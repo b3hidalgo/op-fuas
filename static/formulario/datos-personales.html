@@ -49,7 +49,7 @@
       </div>
       <div class="col-md-4"> <!--Nacionalidad  -->
         <label class="form-label">Nacionalidad</label>
-        <select id="nacionalidad" class="form-select" id="nacionPostulante">
+        <select id="nacionalidad" class="form-select">
           <option selected disabled>Selecciona...</option>
           <option value="chilena">0 - Chilena</option>
           <option value="extranjera">1 - Extranjera con permanencia definitiva</option>
@@ -260,3 +260,31 @@
       </button>
     </div>
 </section>
+
+
+<script>
+  function activarCambioNacionalidad() {
+  const nacionalidad = document.getElementById("nacionalidad");
+  const campoPueblo = document.getElementById("campo-pueblo");
+  const campoExtranjero = document.getElementById("campo-extranjero");
+
+  if (!nacionalidad || !campoPueblo || !campoExtranjero) {
+    console.warn("No se encontraron elementos de nacionalidad");
+    return;
+  }
+
+  nacionalidad.addEventListener("change", function () {
+    const valor = this.value;
+
+    campoPueblo.classList.add("d-none");
+    campoExtranjero.classList.add("d-none");
+
+    if (valor === "chilena") {
+      campoPueblo.classList.remove("d-none");
+    } else if (valor === "extranjera") {
+      campoExtranjero.classList.remove("d-none");
+    }
+  });
+}
+
+</script>

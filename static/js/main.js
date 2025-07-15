@@ -36,8 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.text())
     .then(data => {
       document.getElementById("form-datosPersonales").innerHTML = data;
-    })
-    .catch(error => console.error("Error cargando header:", error));
+
+      // Esperamos brevemente para que los elementos estén cargados en el DOM
+      setTimeout(() => {
+        inicializarDatosPersonales();
+      }, 50);
+    });
 });
 
 
@@ -50,31 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error cargando header:", error));
 });
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const selectNac = document.getElementById("nacionalidad");
-  const campoPueblo = document.getElementById("campo-pueblo");
-  const campoExtranjero = document.getElementById("campo-extranjero");
-
-  selectNac.addEventListener("change", function () {
-    const val = this.value;
-
-    if (val === "chilena") {
-      campoPueblo.classList.remove("d-none");
-      campoExtranjero.classList.add("d-none");
-    } else if (val === "extranjera") {
-      campoExtranjero.classList.remove("d-none");
-      campoPueblo.classList.add("d-none");
-    } else {
-      campoPueblo.classList.add("d-none");
-      campoExtranjero.classList.add("d-none");
-    }
-  });
-});
-
 
 
 function guardarDatosPersonales() {
