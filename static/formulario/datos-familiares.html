@@ -1,0 +1,87 @@
+<style>
+.accordion .accordion-item {
+  border-radius: 0 !important;
+}
+.accordion-button {
+  border-radius: 0 !important;
+}
+.accordion-button {
+  background-color: #006C91 !important; /* Rojo Bootstrap danger */
+  color: white;
+  font-weight: bold;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #E84864 !important;
+  color: white;
+}
+.accordion-body {
+  background-color: white;
+}
+
+
+</style>
+
+<div class="container my-5">
+  <h3 class="fw-bold">Datos familiares</h3>
+  
+  <h5 class="fw-bold mt-3">Integrantes del grupo familiar</h5>
+  <p>
+    Se consideran integrantes del grupo familiar a todas aquellas personas que, siendo residentes de una misma vivienda,
+    realizan habitualmente una vida en común y comparten el mismo presupuesto de alimentación,
+    <strong>independientemente de si existen o no vínculos de parentesco</strong> entre ellas.
+  </p>
+  
+  <p>Considerar a las personas dentro del grupo familiar que se encuentran en las siguientes situaciones:</p>
+  
+  <ul>
+    <li>
+      Aquellas que estén residiendo transitoriamente fuera de la vivienda, sea por vacaciones, enfermedad, negocio, trabajo u otra razón,
+      siempre que los periodos de ausencia no superen los 9 meses.
+    </li>
+    <li>
+      Estudiantes que no residan en el domicilio familiar, pero que dependan económicamente del grupo familiar.
+    </li>
+  </ul>
+  
+  <p>
+    No se consideran como integrantes del grupo familiar a las personas que pagan pensión para residir en la vivienda familiar ni a los
+    trabajadores de casa particular jornada completa, aun cuando cumplan con los requisitos de permanencia.
+  </p>
+
+
+</div>
+
+<div class="container my-4">
+  <h2 class="mb-4">Datos familiares</h2>
+
+  <div class="accordion" id="accordionDatosFamiliares">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingAlfredo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAlfredo" aria-expanded="false" aria-controls="collapseAlfredo">
+          Alfredo Andres Vielma
+        </button>
+      </h2>
+      <div id="collapseAlfredo" class="accordion-collapse collapse" aria-labelledby="headingAlfredo" data-bs-parent="#accordionDatosFamiliares">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col-md-6"><strong>RUT: <br> </strong> 18.669.129-6</div>
+            <div class="col-md-6"><strong>Nombres: <br></strong> Alfredo Andres</div>
+            <div class="col-md-6"><strong>Apellido paterno: <br></strong> Vielma</div>
+            <div class="col-md-6"><strong>Apellido materno: <br></strong> Vidal</div>
+            <div class="col-md-6"><strong>Parentesco: <br></strong> Postulante</div>
+            <div class="col-md-6"><strong>Estado civil: <br></strong> Soltero(a)</div>
+            <div class="col-md-6"><strong>Actividad: <br></strong> Estudiante</div>
+            <div class="col-md-6"><strong>Nivel de estudio: <br></strong> 5 - Completa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón para agregar más familiares (puedes hacerlo dinámico luego con JS) -->
+    <div class="mt-3">
+      <button type="button" class="btn btn-outline-success">
+        <i class="bi bi-plus-circle"></i> Agregar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+body{
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-header-fuas {
+  background-color: #0f3c68;
+}
+
+.logo-fuas {
+  color: #cc3366;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.slogan-mineduc {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+.fuas-navbar {
+  background-color: #257da5; /* Celeste oscuro FUAS */
+  color: white;
+}
+.fuas-link {
+  color: #fdfdfd; /* Azul institucional */
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.fuas-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.fuas-subtitle {
+  font-size: 0.9rem;
+}
+

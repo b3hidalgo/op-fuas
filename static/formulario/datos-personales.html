@@ -1,0 +1,262 @@
+<section class="container my-5"> <!--Antecedentes personales-->
+    <h3 class="mb-4">Antecedentes personales</h3>
+
+    <!-- DATOS PERSONALES -->
+    <div class="mb-3">
+      <h5>Datos personales</h5>
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">RUT</label>
+          <input type="text" class="form-control" id="rutPostulante" placeholder="Ej: 12.345.678-9">
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">Nombres</label>
+          <input type="text" class="form-control" id="nombresPostulante" >
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Apellido paterno</label>
+          <input type="text" class="form-control" id="ap-paternoPostulante" >
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Apellido materno</label>
+          <input type="text" class="form-control" id="ap-maternoPostulante" >
+        </div>
+        <div class="col-md-3 mt-3">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" id="emailPostulante" placeholder="correo@email.com">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DATOS ADICIONALES -->
+    <div class="row g-3 mb-4"> <!-- Fecha de nacimiento | Estado Civil | Nacionalidad  -->
+      <div class="col-md-4"> <!-- Fecha de nacimiento-->
+        <label class="form-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" id="fech-nacPostulante">
+      </div>
+      <div class="col-md-4"> <!--Estado Civil -->
+        <label class="form-label">Estado civil</label>
+        <select class="form-select" id="est-civilPostulante">
+          <option selected disabled>[Selecciona...]</option>
+          <option>Soltero/a</option>
+          <option>Casado/a</option>
+          <option>Divorciado/a</option>
+          <option>Viudo/a</option>
+        </select>
+      </div>
+      <div class="col-md-4"> <!--Nacionalidad  -->
+        <label class="form-label">Nacionalidad</label>
+        <select id="nacionalidad" class="form-select" id="nacionPostulante">
+          <option selected disabled>Selecciona...</option>
+          <option value="chilena">0 - Chilena</option>
+          <option value="extranjera">1 - Extranjera con permanencia definitiva</option>
+        </select>
+      </div>
+      <!-- Pueblo originario (solo si Chileno) -->
+      <div id="campo-pueblo" class="row g-3 mt-3 d-none">
+        <div class="col-md-6">
+          <label class="form-label">¿A qué pueblo originario pertenece?</label>
+          <select class="form-select" id="p-origPostulante">
+            <option value="ninguno">0 - Ninguno</option>
+            <option value="mapuche">1 - Mapuche</option>
+            <option value="aimara">2 - Aymara</option>
+            <!-- Más opciones -->
+          </select>
+        </div>
+      </div>
+    
+      <!-- Solo si extranjero -->
+      <div id="campo-extranjero" class="row g-3 mt-3 d-none">
+        <div class="col-md-6">
+          <label class="form-label">País de origen</label>
+          <select class="form-select" id="nac-extPostulante">
+            <option>Chile</option>
+            <option>Perú</option>
+            <option>Venezuela</option>
+            <!-- etc -->
+          </select>
+        </div>
+
+      <div class="row g-3">
+
+        <div class="col-md-4">
+          <label class="form-label">Nivel de estudio en Extranjero</label>
+          <select class="form-select" id="niv-est-extPostulante">
+            <option>Selecciona...</option>
+            <!-- otras opciones -->
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Actividad</label>
+          <select class="form-select" id="actPostulante">
+            <option>Selecciona...</option>
+            <!-- otras opciones -->
+          </select>
+        </div>
+      </div>
+
+
+    <div class="col-md-6">
+      <label class="form-label">Pasaporte</label>
+      <input type="text" class="form-control" id="pasapPostulante" placeholder="Ej: AB1234567">
+    </div>
+  </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Nivel de estudio</label>
+        <select class="form-select" id="niv-est-Postulante">
+          <option selected disabled>[Selecciona...]</option>
+          <!-- Agrega más niveles según el original -->
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Actividad</label>
+        <select class="form-select" id="act-extPostulante">
+          <option selected disabled>[Selecciona...]</option>
+          <!-- Agrega opciones según el FUAS -->
+        </select>
+      </div>
+    </div>
+
+    <!-- CONDICIÓN DE SALUD -->
+    <div class="mb-4">
+      <label class="form-label fw-bold">
+        ¿Existen en tu hogar (incluyéndote) personas que tengan alguna de las siguientes condiciones de salud de larga duración: ceguera o dificultad visual; sordera o dificultad auditiva; mudez o dificultad en el habla; dificultad física; problemas mentales o psiquiátricos?
+      </label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="cond_salud" id="saludSi" value="si">
+        <label class="form-check-label" for="saludSi">Sí</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="cond_salud" id="saludNo" value="no">
+        <label class="form-check-label" for="saludNo">No</label>
+      </div>
+    </div>
+
+    <!-- DATOS DE CONTACTO -->
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">Teléfono fijo</label>
+        <input type="text" class="form-control" id="numtelPostulante" placeholder="Ej: 123456789">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Celular</label>
+        <input type="text" class="form-control"  id="numcelPostulante" placeholder="Ej: 987654321">
+      </div>
+    </div>
+</section>
+
+
+<section class="container my-5 border-top pt-3 mt-4"> <!--Dirección del grupo familiar-->
+  <h5>Dirección del grupo familiar</h5>
+  <div class="row g-3">
+      <div class="col-md-4">
+          <label class="form-label">Dirección</label>
+          <input type="text" class="form-control" id="direcPostulante" value="" >
+      </div>
+      <div class="col-md-4">
+          <label class="form-label">Número</label>
+          <input type="text" class="form-control"  id="num-direcPostulante" value="" >
+       </div>
+       <div class="col-md-4">
+          <label class="form-label">Departamento</label>
+          <input type="text" class="form-control" id="depPostulante" value="" >
+       </div>
+  </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+          <label class="form-label">Población o villa</label>
+          <input type="text" class="form-control" id="pobPostulante" value="" >
+      </div>
+      <div class="col-md-4">
+          <label class="form-label">Región</label>
+          <select class="form-select" id="regPostulante">
+            <option selected disabled>[Selecciona...]</option>
+          </select>
+       </div>
+       <div class="col-md-4">
+          <label class="form-label">Comuna</label>
+          <select class="form-select" id="comPostulante">
+            <option selected disabled>[Selecciona...]</option>
+          </select>
+       </div>
+  </div>
+</section>
+
+<section class="container my-5 border-top pt-3 mt-4"> <!--Antecedentes académicos enseñanza media-->
+  <h5>Antecedentes académicos enseñanza media</h5>
+  <div class="row g-3 ">
+    <div class="col-md-6">
+      <label class="form-label">Tipo de establecimiento</label>
+      <select name="" id="" class="form-select" id="establecimientoPostulante">
+        <option selected disabled>[Selecciona...]</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Nota enseñanza media (NEM)</label>
+      <input type="text" class="form-control" id="nemPostulante" value="" >
+    </div>
+  </div>
+</section>
+
+
+
+<section class="container my-5"> <!--Antecedentes académicos nivel superior-->
+  <div class="border-top pt-3 mt-4">
+  <h5 class="fw-bold mb-3">Antecedentes académicos nivel superior</h5>
+
+  <div class="row g-3">
+  <div class="col-md-6">
+    <label for="institucion" class="form-label fw-bold">Institución educacional</label>
+    <select id="institucion" class="form-select" id="instPostulante">
+      <option selected>Selecciona...</option>
+      <option value="1">Duoc UC</option>
+      <option value="2">U. de Chile</option>
+      <option value="3">U. Católica</option>
+    </select>
+  </div>
+
+  <div class="col-md-6">
+    <label for="anio" class="form-label fw-bold">Año de Matrícula</label>
+    <input type="text" class="form-control" id="anio" placeholder="Ej: 2023">
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label fw-bold">¿Cuenta con ahorro para la educación superior?</label>
+    <div class="d-flex gap-4">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="ahorro" id="ahorroSi" value="si">
+        <label class="form-check-label" for="ahorroSi">Sí</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="ahorro" id="ahorroNo" value="no">
+        <label class="form-check-label" for="ahorroNo">No</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label fw-bold">¿Cursaste los 4 niveles de enseñanza media en Chile?</label>
+    <div class="d-flex gap-4">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="media" id="mediaSi" value="si">
+        <label class="form-check-label" for="mediaSi">Sí</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="media" id="mediaNo" value="no">
+        <label class="form-check-label" for="mediaNo">No</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="mt-4 text-center">
+      <button type="button" class="btn btn-danger px-4 py-2 fw-bold" onclick="continuarDesdePersonales()">
+        Guardar y continuar
+      </button>
+    </div>
+</section>
