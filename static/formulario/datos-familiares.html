@@ -20,7 +20,6 @@
 
 
 </style>
-
 <div class="container my-5">
   <h3 class="fw-bold">Datos familiares</h3>
   
@@ -30,9 +29,7 @@
     realizan habitualmente una vida en común y comparten el mismo presupuesto de alimentación,
     <strong>independientemente de si existen o no vínculos de parentesco</strong> entre ellas.
   </p>
-  
   <p>Considerar a las personas dentro del grupo familiar que se encuentran en las siguientes situaciones:</p>
-  
   <ul>
     <li>
       Aquellas que estén residiendo transitoriamente fuera de la vivienda, sea por vacaciones, enfermedad, negocio, trabajo u otra razón,
@@ -42,46 +39,267 @@
       Estudiantes que no residan en el domicilio familiar, pero que dependan económicamente del grupo familiar.
     </li>
   </ul>
-  
   <p>
     No se consideran como integrantes del grupo familiar a las personas que pagan pensión para residir en la vivienda familiar ni a los
     trabajadores de casa particular jornada completa, aun cuando cumplan con los requisitos de permanencia.
   </p>
-
-
 </div>
 
 <div class="container my-4">
+  
+  
+  
   <h2 class="mb-4">Datos familiares</h2>
 
-  <div class="accordion" id="accordionDatosFamiliares">
+  
+
+<div class="accordion mb-1" id="accordionFamiliar1">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFamiliar1">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseFamiliar1" aria-expanded="false" aria-controls="collapseFamiliar1">
+          <label id="lblnomCompleto"></label>
+      </button>
+    </h2>
+    <div id="collapseFamiliar1" class="accordion-collapse collapse" aria-labelledby="headingFamiliar1">
+      <div class="accordion-body">
+        <div class="row">
+            <div class="col-md-6"><strong>RUT: <br>  </strong><label class="form-label" id="lblRut"></label></div>
+            <div class="col-md-6"><strong>Nombres: <br>  </strong><label class="form-label" id="lblnomPostulante"> </label></div>
+            <div class="col-md-6"><strong>Apellido paterno:  <br> </strong><label class="form-label" id="lblapePaterno"></label></div>
+            <div class="col-md-6"><strong>Apellido materno: <br></strong><label class="form-label" id="lblapeMaterno"></label></div>
+            <div class="col-md-6"><strong>Parentesco: <br></strong> Postulante</div>
+            <div class="col-md-6"><strong>Estado civil: <br> </strong><label class="form-label" id="lblciv-estPostulante"></label></div>
+            <div class="col-md-6"><strong>Actividad: <br></strong><label class="form-label" id="lblactPostulante"></label></div>
+            <div class="col-md-6"><strong>Nivel de estudio: <br></label></strong><label class="form-label" id="lblniv-estPostulante"></label></div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-1 d-none" id="accordionFamiliar2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFamiliar2">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseFamiliar2" aria-expanded="false" aria-controls="collapseFamiliar2">
+        <label>Familiar 2</label>
+      </button>
+    </h2>
+    <div id="collapseFamiliar2" class="accordion-collapse collapse" aria-labelledby="headingFamiliar2">
+      <div class="accordion-body">
+        <div class="container-fluid">
+            <div class="row g-3 mb-2">
+              <div class="col-md-6">
+                <label class="form-label">RUT</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nombres</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row g-3 mb-2">
+              <div class="col-md-6">
+                <label class="form-label">Apellido paterno</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Apellido materno</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row g-3 mb-2">
+              <div class="col-md-6">
+                <label class="form-label">Parentesco</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Padre</option>
+                  <option>Madre</option>
+                  <option>Hermano(a)</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Estado civil</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Soltero(a)</option>
+                  <option>Casado(a)</option>
+                  <option>Divorciado(a)</option>
+                  <option>Viudo(a)</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Actividad</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Estudiante</option>
+                  <option>Trabajador</option>
+                  <option>Cesante</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nivel de estudio</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Básica</option>
+                  <option>Media</option>
+                  <option>Superior</option>
+                  <option>Postgrado</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-start">
+              <button type="button" class="btn btn-outline-danger btn-sm eliminar-familiar">
+                <i class="bi bi-x-circle"></i> Eliminar
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  
+  <!--
+  Acordeon de Postulantes 1 - 10
+  -->
+  
+  <div class="accordion mb-4 d-none" id="accordionDatosFamiliares">
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingAlfredo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAlfredo" aria-expanded="false" aria-controls="collapseAlfredo">
-          Nombre Postulante
+      <h2 class="accordion-header" id="headingPostulante">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapsePostulante" aria-expanded="false" aria-controls="collapsePostulante">
+          <label id="lblnomCompleto"></label>
         </button>
       </h2>
-      <div id="collapseAlfredo" class="accordion-collapse collapse" aria-labelledby="headingAlfredo" data-bs-parent="#accordionDatosFamiliares">
+      <div id="collapsePostulante" class="accordion-collapse collapse" aria-labelledby="headingPostulante"
+        data-bs-parent="#accordionDatosFamiliares">
         <div class="accordion-body">
           <div class="row">
-            <div class="col-md-6"><strong>RUT: <br> </strong></div>
-            <div class="col-md-6"><strong>Nombres: <br></strong></div>
-            <div class="col-md-6"><strong>Apellido paterno: <br></strong></div>
-            <div class="col-md-6"><strong>Apellido materno: <br></strong></div>
-            <div class="col-md-6"><strong>Parentesco: <br></strong></div>
-            <div class="col-md-6"><strong>Estado civil: <br></strong></div>
-            <div class="col-md-6"><strong>Actividad: <br></strong></div>
-            <div class="col-md-6"><strong>Nivel de estudio: <br></strong></div>
+            <div class="col-md-6"><strong>RUT: <br>  </strong><label class="form-label" id="lblRut"></label></div>
+            <div class="col-md-6"><strong>Nombres: <br>  </strong><label class="form-label" id="lblnomPostulante"> </label></div>
+            <div class="col-md-6"><strong>Apellido paterno:  <br> </strong><label class="form-label" id="lblapePaterno"></label></div>
+            <div class="col-md-6"><strong>Apellido materno: <br></strong><label class="form-label" id="lblapeMaterno"></label></div>
+            <div class="col-md-6"><strong>Parentesco: <br></strong> Postulante</div>
+            <div class="col-md-6"><strong>Estado civil: <br> </strong><label class="form-label" id="lblciv-estPostulante"></label></div>
+            <div class="col-md-6"><strong>Actividad: <br></strong><label class="form-label" id="lblactPostulante"></label></div>
+            <div class="col-md-6"><strong>Nivel de estudio: <br></label></strong><label class="form-label" id="lblniv-estPostulante"></label></div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+ 
+  
+  
+  <!--
+  Acordeones de Formulario
+  -->
+  
+  <div class="accordion d-none" id="contenedor-familiares">
+    <div class="accordion-item border rounded-0 mx-2 mt-3">
+      <h2 class="accordion-header" id="heading-familiar-1">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#familiar-collapse-1" aria-expanded="false" aria-controls="familiar-collapse-1">
+          Familiar 1
+        </button>
+      </h2>
+      <div id="familiar-collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-familiar-1">
+        <div class="accordion-body">
+          <div class="container-fluid">
+            <div class="row g-3 mb-2">
+              <div class="col-md-6">
+                <label class="form-label">RUT</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nombres</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row g-3 mb-2">
+              <div class="col-md-6">
+                <label class="form-label">Apellido paterno</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Apellido materno</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row g-3 mb-2">
+              <div class="col-md-6">
+                <label class="form-label">Parentesco</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Padre</option>
+                  <option>Madre</option>
+                  <option>Hermano(a)</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Estado civil</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Soltero(a)</option>
+                  <option>Casado(a)</option>
+                  <option>Divorciado(a)</option>
+                  <option>Viudo(a)</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Actividad</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Estudiante</option>
+                  <option>Trabajador</option>
+                  <option>Cesante</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nivel de estudio</label>
+                <select class="form-select">
+                  <option selected disabled>Selecciona...</option>
+                  <option>Básica</option>
+                  <option>Media</option>
+                  <option>Superior</option>
+                  <option>Postgrado</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-start">
+              <button type="button" class="btn btn-outline-danger btn-sm eliminar-familiar">
+                <i class="bi bi-x-circle"></i> Eliminar
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Botón para agregar más familiares (puedes hacerlo dinámico luego con JS) -->
-    <div class="mt-3">
-      <button type="button" class="btn btn-outline-success">
-        <i class="bi bi-plus-circle"></i> Agregar
-      </button>
-    </div>
   </div>
+
+
+
+
+  <div class="d-flex justify-content-left mb-3">
+    <button id="btn-agregar-familiar" class="btn btn-success" onclick="agregarFamiliar()">
+      <i class="bi bi-person-plus-fill"></i> Agregar Familiar
+    </button>
+  </div>
+
 </div>

@@ -55,43 +55,169 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(error => console.error("Error cargando header:", error));
 });
 
+var personales = {};
 
 function guardarDatosPersonales() {
-  const personales = {
+
+  personales = {
     rut: document.getElementById("rutPostulante").value,
-    nombres: document.getElementById("nombresPostulante").value,
-    apellidoPaterno: document.getElementById("ap-paternoPostulante").value,
-    apellidoMaterno: document.getElementById("ap-maternoPostulante").value,
-    correo: document.getElementById("emailPostulante").value,
-    fechaNacimiento: document.getElementById("fech-nacPostulante").value,
-    estadoCivil: document.getElementById("est-civilPostulante").value,
-    nacionalidad: document.getElementById("nacionalidad").value,
-    puebloOriginario: document.getElementById("p-origPostulante")?.value || "",
-    paisOrigen: document.getElementById("nac-extPostulante")?.value || "",
-    pasaporte: document.getElementById("pasapPostulante")?.value || "",
-    nivelEstudio: document.getElementById("niv-est-Postulante").value,
-    actividad: document.getElementById("act-extPostulante").value,
-    telefonoFijo: document.getElementById("numtelPostulante").value,
-    celular: document.getElementById("numcelPostulante").value,
-    direccion: document.getElementById("direcPostulante").value,
-    numero: document.getElementById("num-direcPostulante").value,
-    departamento: document.getElementById("depPostulante").value,
-    poblacion: document.getElementById("pobPostulante").value,
-    region: document.getElementById("regPostulante").value,
-    comuna: document.getElementById("comPostulante").value,
-    tipoEstablecimiento: document.getElementById("establecimientoPostulante").value,
-    nem: document.getElementById("nemPostulante").value,
-    institucion: document.getElementById("institucion").value,
-    anioMatricula: document.getElementById("anio-matriculaPostulante").value,
-    ahorroEducacion: document.getElementById("ahorroSi").checked ? "sí" : document.getElementById("ahorroNo").checked ? "no" : "",
-    mediaCompletaChile: document.getElementById("mediaSi").checked ? "sí" : document.getElementById("mediaNo").checked ? "no" : ""
+    apePaterno: document.getElementById("ap-paternoPostulante").value,
+    apeMaterno: document.getElementById("ap-maternoPostulante").value,
+    nomPostulante: document.getElementById("nombresPostulante").value,
+    civPostulante: document.getElementById("civ-estPostulante").value,
+    nivPostulante: document.getElementById("niv-estPostulante").value,
+    actPostulante: document.getElementById("actPostulante").value,
+  
   };
 
-  localStorage.setItem("fuas_personales", JSON.stringify(personales));
+  //localStorage.setItem("fuas_personales", JSON.stringify(personales));
+  console.log("Datos de postulante: ", personales);
 }
 
 function continuarDesdePersonales() {
+  console.log("Cargando datos");
   guardarDatosPersonales();
-  cargarSeccion("datos-familiares");
+  cargarSeccion();
+  ocultarTodo();
+  mostrardatosFamiliares();
+
 }
 
+function navdatosPersonales() {
+  ocultarTodo();
+  mostrardatosPersonales()
+}
+
+function navdatosFamiliares() {
+  ocultarTodo();
+  mostrardatosFamiliares()
+}
+
+function navdatosPersonales() {
+  ocultarTodo();
+  mostrardatosPersonales()
+}
+
+
+function ocultarTodo() {
+  document.getElementById("form-datosPersonales").classList.add("d-none");
+  document.getElementById("form-datosFamiliares").classList.add("d-none");
+}
+
+
+
+function mostrardatosFamiliares() {
+  document.getElementById("form-datosFamiliares").classList.remove("d-none");
+}
+function mostrardatosPersonales(){
+document.getElementById("form-datosPersonales").classList.remove("d-none");
+}
+
+
+function cargarSeccion() {
+  document.getElementById("lblRut").textContent = personales.rut;
+  document.getElementById("lblapePaterno").textContent = personales.apePaterno;
+  document.getElementById("lblapeMaterno").textContent = personales.apeMaterno;
+  document.getElementById("lblnomPostulante").textContent = personales.nomPostulante;
+  document.getElementById("lblnomCompleto").textContent = personales.nomPostulante + " " + personales.apePaterno + " " + personales.apeMaterno;
+  document.getElementById("lblciv-estPostulante").textContent = personales.civPostulante;
+  document.getElementById("lblniv-estPostulante").textContent = personales.nivPostulante;
+  document.getElementById("lblactPostulante").textContent = personales.actPostulante;
+  }
+let familiarCounter = 1; // Contador global
+
+function agregarFamiliar() {
+  document.getElementById("accordionFamiliar2").classList.remove("d-none");
+  }
+
+  const container = document.getElementById("acordeon-familiares");
+
+  // Creamos un ID único
+  const familiarId = `familiar-${familiarCounter}`;
+
+  // Plantilla del acordeón
+  const nuevoFamiliar = document.createElement("div");
+  nuevoFamiliar.classList.add("accordion-item");
+  nuevoFamiliar.id = familiarId;
+
+  nuevoFamiliar.innerHTML = `
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-danger text-white fw-bold" type="button"
+        data-bs-toggle="collapse" data-bs-target="#collapse-${familiarId}" aria-expanded="false"
+        aria-controls="collapse-${familiarId}">
+        Familiar ${familiarCounter}
+      </button>
+    </h2>
+    <div id="collapse-${familiarId}" class="accordion-collapse collapse">
+      <div class="accordion-body">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">RUT</label>
+            <input type="text" class="form-control" id="rut-${familiarId}">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="nombres-${familiarId}">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Apellido paterno</label>
+            <input type="text" class="form-control" id="apellidoPaterno-${familiarId}">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Apellido materno</label>
+            <input type="text" class="form-control" id="apellidoMaterno-${familiarId}">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Parentesco</label>
+            <select class="form-select" id="parentesco-${familiarId}">
+              <option selected>Selecciona...</option>
+              <option>Madre</option>
+              <option>Padre</option>
+              <option>Hermano/a</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Estado civil</label>
+            <select class="form-select" id="estadoCivil-${familiarId}">
+              <option selected>Selecciona...</option>
+              <option>Soltero(a)</option>
+              <option>Casado(a)</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Actividad</label>
+            <select class="form-select" id="actividad-${familiarId}">
+              <option selected>Selecciona...</option>
+              <option>Estudiante</option>
+              <option>Trabajador</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nivel de estudio</label>
+            <select class="form-select" id="nivelEstudio-${familiarId}">
+              <option selected>Selecciona...</option>
+              <option>Primaria</option>
+              <option>Secundaria</option>
+              <option>Superior</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-outline-danger btn-sm" onclick="eliminarFamiliar('${familiarId}')">
+          <i class="bi bi-x-circle-fill"></i> Eliminar
+        </button>
+      </div>
+    </div>
+  `;
+
+  container.appendChild(nuevoFamiliar);
+
+function eliminarFamiliar(id) {
+  const confirmar = confirm("¿Estás seguro de que deseas eliminar este familiar?");
+  if (confirmar) {
+    const familiar = document.getElementById(id);
+    if (familiar) familiar.remove();
+  }
+}
