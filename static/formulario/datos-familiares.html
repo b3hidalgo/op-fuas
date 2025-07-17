@@ -46,10 +46,6 @@
 </div>
 
 <div class="container my-4">
-  
-  
-  
-  <h2 class="mb-4">Datos familiares</h2>
 
   
 
@@ -209,93 +205,6 @@
   Acordeones de Formulario
   -->
   
-  <div class="accordion d-none" id="contenedor-familiares">
-    <div class="accordion-item border rounded-0 mx-2 mt-3">
-      <h2 class="accordion-header" id="heading-familiar-1">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#familiar-collapse-1" aria-expanded="false" aria-controls="familiar-collapse-1">
-          Familiar 1
-        </button>
-      </h2>
-      <div id="familiar-collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-familiar-1">
-        <div class="accordion-body">
-          <div class="container-fluid">
-            <div class="row g-3 mb-2">
-              <div class="col-md-6">
-                <label class="form-label">RUT</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Nombres</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="row g-3 mb-2">
-              <div class="col-md-6">
-                <label class="form-label">Apellido paterno</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Apellido materno</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="row g-3 mb-2">
-              <div class="col-md-6">
-                <label class="form-label">Parentesco</label>
-                <select class="form-select">
-                  <option selected disabled>Selecciona...</option>
-                  <option>Padre</option>
-                  <option>Madre</option>
-                  <option>Hermano(a)</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Estado civil</label>
-                <select class="form-select">
-                  <option selected disabled>Selecciona...</option>
-                  <option>Soltero(a)</option>
-                  <option>Casado(a)</option>
-                  <option>Divorciado(a)</option>
-                  <option>Viudo(a)</option>
-                </select>
-              </div>
-            </div>
-            <div class="row g-3 mb-3">
-              <div class="col-md-6">
-                <label class="form-label">Actividad</label>
-                <select class="form-select">
-                  <option selected disabled>Selecciona...</option>
-                  <option>Estudiante</option>
-                  <option>Trabajador</option>
-                  <option>Cesante</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Nivel de estudio</label>
-                <select class="form-select">
-                  <option selected disabled>Selecciona...</option>
-                  <option>Básica</option>
-                  <option>Media</option>
-                  <option>Superior</option>
-                  <option>Postgrado</option>
-                </select>
-              </div>
-            </div>
-            <div class="text-start">
-              <button type="button" class="btn btn-outline-danger btn-sm eliminar-familiar">
-                <i class="bi bi-x-circle"></i> Eliminar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
   <div class="d-flex justify-content-left mb-3">
     <button id="btn-agregar-familiar" class="btn btn-success" onclick="agregarFamiliar()">
       <i class="bi bi-person-plus-fill"></i> Agregar Familiar
