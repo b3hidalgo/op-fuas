@@ -40,3 +40,21 @@ body{
   font-size: 0.9rem;
 }
 
+.accordion .accordion-item {
+  border-radius: 0 !important;
+}
+.accordion-button {
+  border-radius: 0 !important;
+}
+.accordion-button {
+  background-color: #006C91 !important; /* Rojo Bootstrap danger */
+  color: white;
+  font-weight: bold;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #E84864 !important;
+  color: white;
+}
+.accordion-body {
+  background-color: white;
+}
