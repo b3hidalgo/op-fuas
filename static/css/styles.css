@@ -1,11 +1,27 @@
 body{
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
     padding: 0;
+    font-family: 'Lato', sans-serif;
 }
 
+h1 {
+    font-family: 'Merriweather', serif;
+}
+h2 {
+    font-family: 'Merriweather', serif;
+}
+h5 {
+    font-family: 'Merriweather', serif;
+}
+
+h3 {
+    font-family: 'Merriweather', serif;
+}
+
+
 .bg-header-fuas {
-  background-color: #0f3c68;
+  background-color: #FFB800;
 }
 
 .logo-fuas {
@@ -21,7 +37,7 @@ body{
 }
 
 .fuas-navbar {
-  background-color: #257da5; /* Celeste oscuro FUAS */
+  background-color: #000000;
   color: white;
 }
 .fuas-link {
@@ -47,12 +63,12 @@ body{
   border-radius: 0 !important;
 }
 .accordion-button {
-  background-color: #006C91 !important; /* Rojo Bootstrap danger */
+  background-color: #1A1A1A !important; /* Rojo Bootstrap danger */
   color: white;
   font-weight: bold;
 }
 .accordion-button:not(.collapsed) {
-  background-color: #E84864 !important;
+  background-color: #1A1A1A !important;
   color: white;
 }
 .accordion-body {
