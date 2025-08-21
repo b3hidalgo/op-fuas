@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer - Consentimiento Informado</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+      background-color: #FFB800; /* Fondo amarillo institucional */
+    }
+  </style>
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+
+  <div class="card shadow-lg p-4" style="max-width: 700px; width: 100%;">
+    <h1 class="mb-3">Disclaimer</h1>
+    <p>
+      Acepto que los datos e información que comparta se mantendrán bajo reserva conforme a lo estipulado en la Ley N°19.628,
+      resguardando la confidencialidad, siendo utilizados por Duoc UC solo para efectos de gestión interna, análisis de información y mantener contacto.
+    </p>
+
+    <!-- Enlace al consentimiento -->
+    <a href="#" data-bs-toggle="modal" data-bs-target="#modalConsentimiento">Ver Consentimiento Informado</a>
+
+    <!-- Modal con el texto completo -->
+    <div class="modal fade" id="modalConsentimiento" tabindex="-1" aria-labelledby="modalConsentimientoLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalConsentimientoLabel">Consentimiento Informado</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body" style="text-align: justify;">
+            <h6>¿Qué significa sí, autorizo?</h6>
+            <p>
+              Al aceptar este consentimiento, usted autoriza expresamente a Duoc UC a tratar los datos personales que ha proporcionado, para los fines que se detallan a continuación:
+            </p>
+            <ul>
+              <li>Comunicarse con usted e informarle sobre novedades, servicios y beneficios de Duoc UC...</li>
+              <li>Invitarle a participar en actividades, iniciativas, concursos y otros eventos...</li>
+              <li>Realizar encuestas, estudios y análisis estadísticos...</li>
+            </ul>
+
+            <h6>¿Quién puede acceder a sus datos?</h6>
+            <p>
+              Duoc UC se compromete a mantener la confidencialidad y seguridad de sus datos personales...
+            </p>
+
+            <h6>¿Cuáles son sus derechos?</h6>
+            <p>
+              Como titular de los datos personales, usted podrá ejercer en cualquier momento los derechos otorgados por la Ley N° 19.628:
+            </p>
+            <ul>
+              <li>Derecho a acceder a sus datos</li>
+              <li>Derecho a rectificarlos</li>
+              <li>Derecho a solicitar su eliminación</li>
+              <li>Derecho a oponerse al tratamiento</li>
+              <li>Derecho a revocar este consentimiento</li>
+            </ul>
+
+            <p>
+              Para ejercer estos derechos, deberá comunicarse con la Delegada de Protección de Datos de Duoc UC,  
+              Sra. Ghia Gajardo Pineda, al correo <a href="mailto:gobiernodedatos@duoc.cl">gobiernodedatos@duoc.cl</a>.
+            </p>
+
+            <p><b>Declaro haber leído y comprendido el contenido del presente consentimiento informado y otorgo mi autorización.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkbox de aceptación -->
+    <div class="form-check mt-4">
+      <input class="form-check-input" type="checkbox" id="aceptoCheck">
+      <label class="form-check-label" for="aceptoCheck">
+        He leído y acepto el consentimiento informado.
+      </label>
+    </div>
+
+    <!-- Botón que lleva al formulario -->
+    <div class="mt-3">
+      <button id="continuarBtn" class="btn btn-primary w-100" disabled>Continuar al Formulario</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const check = document.getElementById("aceptoCheck");
+    const btn = document.getElementById("continuarBtn");
+
+    check.addEventListener("change", () => {
+      btn.disabled = !check.checked;
+    });
+
+    btn.addEventListener("click", () => {
+      window.location.href = "index.html"; // redirige al formulario principal
+    });
+  </script>
+</body>
+</html>
