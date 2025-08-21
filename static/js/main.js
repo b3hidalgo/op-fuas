@@ -18,25 +18,20 @@ function inicializarDatosPersonales() {
   });
 }
 
+// ... (todo tu JS de UI, acordiones y helpers existente) ...
+
 let contadorFamiliares = 1;
 
 function agregarFamiliar() {
-  contadorFamiliares++;
-      console.log("Prueba 2");
-
-  const acordeon = document.createElement("div");
-  acordeon.classList.add("accordion-item", "mb-1");
-
-  acordeon.innerHTML = `
-    <h2 class="accordion-header" id="headingFamiliar${contadorFamiliares}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseFamiliar${contadorFamiliares}" aria-expanded="false"
-        aria-controls="collapseFamiliar${contadorFamiliares}">
-        Familiar ${contadorFamiliares}
+  const acordeonSalud = document.createElement("div");
+  acordeonSalud.className = "accordion-item";
+  acordeonSalud.innerHTML = `
+    <h2 class="accordion-header" id="headingCondSalud${familiarCounter}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCondSalud${familiarCounter}" aria-expanded="false" aria-controls="collapseCondSalud${familiarCounter}">
+        Condición de Salud Familiar ${familiarCounter}
       </button>
     </h2>
-    <div id="collapseFamiliar${contadorFamiliares}" class="accordion-collapse collapse"
-      aria-labelledby="headingFamiliar${contadorFamiliares}">
+    <div id="collapseCondSalud${familiarCounter}" class="accordion-collapse collapse" aria-labelledby="headingCondSalud${familiarCounter}" data-bs-parent="#acordeon-condicion-salud">
       <div class="accordion-body">
         <div class="container-fluid">
             <div class="row g-3 mb-2">
@@ -61,29 +56,7 @@ function agregarFamiliar() {
             </div>
             <div class="row g-3 mb-2">
               <div class="col-md-6">
-                <label class="form-label">Parentesco</label>
-                <select class="form-select">
-                  <option selected disabled>Selecciona...</option>
-                  <option>Padre</option>
-                  <option>Madre</option>
-                  <option>Hermano(a)</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Estado civil</label>
-                <select class="form-select">
-                  <option selected disabled>Selecciona...</option>
-                  <option>Soltero(a)</option>
-                  <option>Casado(a)</option>
-                  <option>Divorciado(a)</option>
-                  <option>Viudo(a)</option>
-                </select>
-              </div>
-            </div>
-            <div class="row g-3 mb-3">
-              <div class="col-md-6">
-                <label class="form-label">Actividad</label>
+                <label class="form-label">Relación con el postulante</label>
                 <select class="form-select">
                   <option selected disabled>Selecciona...</option>
                   <option>Estudiante</option>
@@ -98,268 +71,42 @@ function agregarFamiliar() {
                   <option>Básica</option>
                   <option>Media</option>
                   <option>Superior</option>
-                  <option>Postgrado</option>
+                  <option>Técnico</option>
                 </select>
               </div>
             </div>
-            
+            <div class="row g-3 mb-2">
+              <div class="col-md-12">
+                <label class="form-label">Antecedentes de salud</label>
+                <textarea class="form-control" rows="3" placeholder="Describe la condición de salud del familiar..."></textarea>
+              </div>
+            </div>
+            <div class="row g-3 mb-2">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">¿Se puede desplazar dentro del hogar?</label><br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="desplazarseCasa" id="desplazarseCasaSi" value="si">
+                  <label class="form-check-label" for="desplazarseCasaSi">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="desplazarseCasa" id="desplazarseCasaNo" value="no">
+                  <label class="form-check-label" for="desplazarseCasaNo">No</label>
+                </div>
+              </div>
 
-          
-          </div>
-      </div>
-    </div>
-  `;
-
-  document.getElementById("acordeon-container").appendChild(acordeon);
-
-   // Crear acordeón de ingresos
-  const acordeonIngresos = document.createElement("div");
-  acordeonIngresos.classList.add("accordion-item", "mb-1");
-  acordeonIngresos.innerHTML = `
-    <h2 class="accordion-header" id="headingIngresos${contadorFamiliares}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseIngresos${contadorFamiliares}" aria-expanded="false" aria-controls="collapseIngresos${contadorFamiliares}">
-        Familiar ${contadorFamiliares} - Ingresos
-      </button>
-    </h2>
-    <div id="collapseIngresos${contadorFamiliares}" class="accordion-collapse collapse">
-      <div class="accordion-body">
-        <h5><strong>Año 2024</strong></h5>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label for="sueldos2024" class="form-label">Sueldos</label>
-            <input type="number" class="form-control" id="sueldos2024" value="0"/>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensiones2024" class="form-label">Pensiones</label>
-            <input type="number" class="form-control" id="pensiones2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="honorarios2024" class="form-label">Honorarios</label>
-            <input type="number" class="form-control" id="honorarios2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="retiros2024" class="form-label">Retiros</label>
-            <input type="number" class="form-control" id="retiros2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="dividendos2024" class="form-label">Dividendos por acciones</label>
-            <input type="number" class="form-control" id="dividendos2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="intereses2024" class="form-label">Intereses mobiliarios</label>
-            <input type="number" class="form-control" id="intereses2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="ganancias2024" class="form-label">Ganancias de capital</label>
-            <input type="number" class="form-control" id="ganancias2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensionAlimenticia2024" class="form-label">Pensión alimenticia y otros aportes de parientes</label>
-            <input type="number" class="form-control" id="pensionAlimenticia2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="independiente2024" class="form-label">Actividades independientes</label>
-            <input type="number" class="form-control" id="independiente2024" value="0" />
+              <div class="col-md-6 mb-3">
+                <label class="form-label">¿Puede controlar completamente sus esfínteres?</label><br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="esfinteres" id="esfinteresSi" value="si">
+                  <label class="form-check-label" for="esfinteresSi">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="esfinteres" id="esfinteresNo" value="no">
+                  <label class="form-check-label" for="esfinteresNo">No</label>
+                </div>
+              </div>
             </div>
         </div>
-        <hr>
-        <h5><strong>Año 2025</strong></h5>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label for="sueldos2025" class="form-label">Sueldos</label>
-            <input type="number" class="form-control" id="sueldos2025" value="0"/>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensiones2025" class="form-label">Pensiones</label>
-            <input type="number" class="form-control" id="pensiones2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="honorarios2025" class="form-label">Honorarios</label>
-            <input type="number" class="form-control" id="honorarios2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="retiros2025" class="form-label">Retiros</label>
-            <input type="number" class="form-control" id="retiros2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="dividendos2025" class="form-label">Dividendos por acciones</label>
-            <input type="number" class="form-control" id="dividendos2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="intereses2025" class="form-label">Intereses mobiliarios</label>
-            <input type="number" class="form-control" id="intereses2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="ganancias2025" class="form-label">Ganancias de capital</label>
-            <input type="number" class="form-control" id="ganancias2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensionAlimenticia2025" class="form-label">Pensión alimenticia y otros aportes de parientes</label>
-            <input type="number" class="form-control" id="pensionAlimenticia2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="independiente2025" class="form-label">Actividades independientes</label>
-            <input type="number" class="form-control" id="independiente2025" value="0" />
-            </div>
-        </div>
-      </div>
-    </div>
-  `;
-  document.getElementById("acordeon-ingresos-familiares").appendChild(acordeonIngresos);
-
-  // Crear acordeón de condición de salud
-  const acordeonSalud = document.createElement("div");
-  acordeonSalud.classList.add("accordion-item", "mb-1");
-  acordeonSalud.innerHTML = `
-    <h2 class="accordion-header" id="headingSalud${contadorFamiliares}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseSalud${contadorFamiliares}" aria-expanded="false" aria-controls="collapseSalud${contadorFamiliares}">
-        Familiar ${contadorFamiliares} - Condición de Salud
-      </button>
-    </h2>
-    <div id="collapseSalud${contadorFamiliares}" class="accordion-collapse collapse">
-      <div class="accordion-body">
-        <div class="row">
-
-  <div class="col-md-6 mb-3">
-    <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
-    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Tiene ceguera o dificultad visual aún usando lentes de forma permanente?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="ceguera" id="cegueraSi" value="si">
-      <label class="form-check-label" for="cegueraSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="ceguera" id="cegueraNo" value="no">
-      <label class="form-check-label" for="cegueraNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Tiene sordera o dificultad auditiva aún usando audífonos de forma permanente?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="sordera" id="sorderaSi" value="si">
-      <label class="form-check-label" for="sorderaSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="sordera" id="sorderaNo" value="no">
-      <label class="form-check-label" for="sorderaNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Tiene mudez o dificultad en el habla de forma permanente?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="mudez" id="mudezSi" value="si">
-      <label class="form-check-label" for="mudezSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="mudez" id="mudezNo" value="no">
-      <label class="form-check-label" for="mudezNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Tiene dificultad física de forma permanente?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="dificultadFisica" id="dificultadFisicaSi" value="si">
-      <label class="form-check-label" for="dificultadFisicaSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="dificultadFisica" id="dificultadFisicaNo" value="no">
-      <label class="form-check-label" for="dificultadFisicaNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Tiene problemas mentales de forma permanente?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="problemasMentales" id="problemasMentalesSi" value="si">
-      <label class="form-check-label" for="problemasMentalesSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="problemasMentales" id="problemasMentalesNo" value="no">
-      <label class="form-check-label" for="problemasMentalesNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Tiene problemas psiquiátricos de forma permanente?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="problemasPsiquiatricos" id="problemasPsiquiatricosSi" value="si">
-      <label class="form-check-label" for="problemasPsiquiatricosSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="problemasPsiquiatricos" id="problemasPsiquiatricosNo" value="no">
-      <label class="form-check-label" for="problemasPsiquiatricosNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Puede salir solo(a) a la calle sin ayuda o compañía?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="salirSolo" id="salirSoloSi" value="si">
-      <label class="form-check-label" for="salirSoloSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="salirSolo" id="salirSoloNo" value="no">
-      <label class="form-check-label" for="salirSoloNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Puede hacer compras o ir al médico solo(a), sin ayuda o compañía?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="comprasSolo" id="comprasSoloSi" value="si">
-      <label class="form-check-label" for="comprasSoloSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="comprasSolo" id="comprasSoloNo" value="no">
-      <label class="form-check-label" for="comprasSoloNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Puede bañarse, lavarse los dientes, peinarse o comer solo(a)?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="aseoPersonal" id="aseoPersonalSi" value="si">
-      <label class="form-check-label" for="aseoPersonalSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="aseoPersonal" id="aseoPersonalNo" value="no">
-      <label class="form-check-label" for="aseoPersonalNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Puede moverse/desplazarse solo(a) dentro de la casa?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="desplazarseCasa" id="desplazarseCasaSi" value="si">
-      <label class="form-check-label" for="desplazarseCasaSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="desplazarseCasa" id="desplazarseCasaNo" value="no">
-      <label class="form-check-label" for="desplazarseCasaNo">No</label>
-    </div>
-  </div>
-
-  <div class="col-md-6 mb-3">
-    <label class="form-label">¿Puede controlar completamente sus esfínteres?</label><br>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="esfinteres" id="esfinteresSi" value="si">
-      <label class="form-check-label" for="esfinteresSi">Sí</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="esfinteres" id="esfinteresNo" value="no">
-      <label class="form-check-label" for="esfinteresNo">No</label>
-    </div>
-  </div>
-</div>
-
       </div>
     </div>
   `;
@@ -372,7 +119,11 @@ function eliminarFamiliar(btn) {
   }
 }
 
+// ... (más código de tus módulos y navegación) ...
 
+// --------------------------
+// Carga de HTMLs de las secciones
+// --------------------------
 function cargarHTML(rutaArchivo, idContenedor) {
   fetch(rutaArchivo)
     .then(response => {
@@ -383,6 +134,27 @@ function cargarHTML(rutaArchivo, idContenedor) {
       const contenedor = document.getElementById(idContenedor);
       if (contenedor) {
         contenedor.innerHTML = data;
+
+        // Inicializadores por sección (post-inyección)
+        try {
+          switch (idContenedor) {
+            case "form-ingresosFamiliares":
+              if (typeof window.initIngresosFamiliaresMatriz === "function") window.initIngresosFamiliaresMatriz();
+              break;
+            case "form-datosPersonales":
+              if (typeof window.inicializarDatosPersonales === "function") window.inicializarDatosPersonales();
+              break;
+            case "form-datosFamiliares":
+              // si tienes un init específico, llámalo aquí
+              break;
+            case "form-condicionSalud":
+              // si tienes un init específico, llámalo aquí
+              break;
+          }
+        } catch (e) {
+          console.warn("Init sección falló:", e);
+        }
+
       } else {
         console.warn(`Contenedor con id "${idContenedor}" no encontrado.`);
       }
@@ -390,22 +162,19 @@ function cargarHTML(rutaArchivo, idContenedor) {
     .catch(error => console.error(`Error al cargar ${rutaArchivo}:`, error));
 }
 
-
-
+// --------------------------
+// Inicio global
+// --------------------------
 document.addEventListener("DOMContentLoaded", function () {
   // Cargar secciones del formulario
   cargarHTML("/static/header.html",                         "header-container");
   cargarHTML("/static/formulario/datos-personales.html",    "form-datosPersonales");
   cargarHTML("/static/formulario/datos-familiares.html",    "form-datosFamiliares");
   cargarHTML("/static/formulario/ingresos-familiares.html", "form-ingresosFamiliares");
-  cargarHTML("/static/formulario/condicion-salud.html", "form-condicionSalud");
+  cargarHTML("/static/formulario/condicion-salud.html",     "form-condicionSalud");
+  // Tooltips delegados
+  initTooltipsDelegados();
 });
-
-
-
-
-
-
 
 var personales = {};
 
@@ -416,77 +185,17 @@ function guardarDatosPersonales() {
     apePaterno: document.getElementById("ap-paternoPostulante").value,
     apeMaterno: document.getElementById("ap-maternoPostulante").value,
     nomPostulante: document.getElementById("nombresPostulante").value,
-    civPostulante: document.getElementById("civ-estPostulante").value,
-    nivPostulante: document.getElementById("niv-estPostulante").value,
-    actPostulante: document.getElementById("actPostulante").value,
-  
+    civPostulante: document.getElementById("civPostulante").value,
+    nivPostulante: document.getElementById("nivPostulante").value,
+    actPostulante: document.getElementById("actPostulante").value
   };
 
-  //localStorage.setItem("fuas_personales", JSON.stringify(personales));
-  console.log("Datos de postulante: ", personales);
-}
-
-function continuarDesdePersonales() {
-  console.log("Cargando datos");
-  guardarDatosPersonales();
+  // Mostrar datos en labels
   cargarSeccion();
-  ocultarTodo();
-  mostrardatosFamiliares();
 
+  // Navegación
+  navdatosPersonales();
 }
-
-function navdatosPersonales() {
-  ocultarTodo();
-  mostrardatosPersonales()
-}
-
-function navdatosFamiliares() {
-  console.log("Redirigiendo a datos familiares");
-  ocultarTodo();
-  mostrardatosFamiliares()
-}
-
-function navdatosPersonales() {
-  ocultarTodo();
-  mostrardatosPersonales()
-}
-
-function navingresosFamiliares() {
-  console.log("Redirigiendo a ingresos familiares");
-  ocultarTodo();
-  mostraringresosFamiliares()
-}
-
-function navcondicionSalud() {
-  console.log("Redirigiendo a Condicion de Salud");
-  ocultarTodo();
-  mostrarcondicionSalud()
-}
-
-
-function ocultarTodo() {
-  document.getElementById("form-datosPersonales").classList.add("d-none");
-  document.getElementById("form-datosFamiliares").classList.add("d-none");
-  document.getElementById("form-ingresosFamiliares").classList.add("d-none");
-  document.getElementById("form-condicionSalud").classList.add("d-none");
-
-}
-
-
-
-function mostraringresosFamiliares(){
-document.getElementById("form-ingresosFamiliares").classList.remove("d-none");
-}
-function mostrardatosPersonales(){
-document.getElementById("form-datosPersonales").classList.remove("d-none");
-}
-function mostrardatosFamiliares() {
-  document.getElementById("form-datosFamiliares").classList.remove("d-none");
-}
-function mostrarcondicionSalud() {
-  document.getElementById("form-condicionSalud").classList.remove("d-none");
-}
-
 
 function cargarSeccion() {
   document.getElementById("lblRut").textContent = personales.rut;
@@ -494,30 +203,731 @@ function cargarSeccion() {
   document.getElementById("lblapeMaterno").textContent = personales.apeMaterno;
   document.getElementById("lblnomPostulante").textContent = personales.nomPostulante;
   document.querySelectorAll(".lblNomCompleto").forEach(label => {
-  label.textContent = personales.nomPostulante + " " + personales.apePaterno + " " + personales.apeMaterno;});
+    label.textContent = personales.nomPostulante + " " + personales.apePaterno + " " + personales.apeMaterno;
+  });
   document.getElementById("lblciv-estPostulante").textContent = personales.civPostulante;
   document.getElementById("lblniv-estPostulante").textContent = personales.nivPostulante;
   document.getElementById("lblactPostulante").textContent = personales.actPostulante;
+}
+
+
+
+// (… aquí va todo tu código existente para secciones de familiares y salud …)
+
+function mostrardatosPersonales() {
+  document.getElementById("form-datosPersonales").classList.remove("d-none");
+}
+function mostrardatosFamiliares() {
+  document.getElementById("form-datosFamiliares").classList.remove("d-none");
+}
+function mostraringresosFamiliares() {
+  document.getElementById("form-ingresosFamiliares").classList.remove("d-none");
+}
+function mostrarcondicionSalud() {
+  document.getElementById("form-condicionSalud").classList.remove("d-none");
+}
+
+function ocultarTodo() {
+  document.getElementById("form-datosPersonales").classList.add("d-none");
+  document.getElementById("form-datosFamiliares").classList.add("d-none");
+  document.getElementById("form-ingresosFamiliares").classList.add("d-none");
+  document.getElementById("form-condicionSalud").classList.add("d-none");
+}
+
+function navdatosPersonales() {
+  ocultarTodo();
+  mostrardatosFamiliares();
+}
+function navdatosFamiliares() {
+  ocultarTodo();
+  mostraringresosFamiliares();
+}
+function navingresosFamiliares() {
+  ocultarTodo();
+  mostrarcondicionSalud();
+}
+function navcondicionSalud() {
+  ocultarTodo();
+  mostrardatosPersonales();
+}
+
+// --------------------------
+// Tooltips con delegación (global)
+// --------------------------
+function initTooltipsDelegados() {
+  if (typeof bootstrap === "undefined" || !bootstrap.Tooltip) return;
+  new bootstrap.Tooltip(document.body, {
+    selector: "[data-bs-toggle='tooltip']",
+    container: "body",
+    trigger: "hover focus"
+  });
+}
+
+// =====================================================
+/* MÓDULO: Ingresos Familiares (matriz + subtotales, robusto) */
+// =====================================================
+(function () {
+  const ROOT_ID = "ingresos-familiares-matriz";
+  const KEY_PREFIX = "fuas.ingresosMatriz."; // por miembro
+
+  // Si ya tienes el miembro actual en tu app, setéalo en window.currentMemberId
+  function currentMemberId() {
+    return window.currentMemberId || "postulante";
   }
-let familiarCounter = 1; // Contador global
 
-//function agregarFamiliar() {
-  //document.getElementById("accordionFamiliar2").classList.remove("d-none");
- // }
+  // --- Helpers ---
+  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const toNum = (v) => Number(String(v || 0).replace(/[^\d.-]/g, "")) || 0;
+  const clp = (n) => "$" + Number(n || 0).toLocaleString("es-CL");
 
-  const container = document.getElementById("acordeon-familiares");
+  // ==== PARCHE ROBUSTEZ (Ing. Familiares): tolerante a nodos faltantes ====
+  const qsa_safe = (sel, root) => (root ? Array.from(root.querySelectorAll(sel)) : []);
+  const $_safe  = (sel, root) => (root ? root.querySelector(sel) : null);
 
-  // Creamos un ID único
-  const familiarId = `familiar-${familiarCounter}`;
+  function computeYearSubtotal(yearContainer) {
+    if (!yearContainer) return 0;
+    let subtotal = 0;
+    qsa_safe("input.igf-input", yearContainer).forEach(inp => {
+      subtotal += toNum(inp.value);
+    });
+    return subtotal;
+  }
 
-  // Plantilla del acordeón 
- 
+  function updateSubtotals() {
+    const root = document.getElementById(ROOT_ID);
+    if (!root) return; // aún no se inyecta esta vista, salimos sin romper
 
+    const y2024 = root.querySelector('[data-year="2024"]');
+    const y2025 = root.querySelector('[data-year="2025"]');
 
-function eliminarFamiliar(id) {
-  const confirmar = confirm("¿Estás seguro de que deseas eliminar este familiar?");
-  if (confirmar) {
-    const familiar = document.getElementById(id);
-    if (familiar) familiar.remove();
+    const s2024 = computeYearSubtotal(y2024);
+    const s2025 = computeYearSubtotal(y2025);
+    const g     = s2024 + s2025;
+
+    const el2024 = $_safe("#igf-subtotal-2024", root);
+    const el2025 = $_safe("#igf-subtotal-2025", root);
+    const elGlob = $_safe("#igf-subtotal-global", root);
+
+    if (el2024) el2024.textContent = clp(s2024);
+    if (el2025) el2025.textContent = clp(s2025);
+    if (elGlob) elGlob.textContent = clp(g);
+  }
+
+  function serializeFromDOM() {
+    const root = document.getElementById(ROOT_ID);
+    if (!root) return { "2024": {}, "2025": {} };
+
+    const out = { "2024": {}, "2025": {} };
+    ["2024", "2025"].forEach(year => {
+      const box = root.querySelector(`[data-year="${year}"]`);
+      qsa_safe("input.igf-input", box).forEach(inp => {
+        out[year][inp.dataset.type] = toNum(inp.value);
+      });
+    });
+    return out;
+  }
+
+  function hydrateToDOM(state) {
+    const root = document.getElementById(ROOT_ID);
+    if (!root) return;
+
+    ["2024", "2025"].forEach(year => {
+      const box = root.querySelector(`[data-year="${year}"]`);
+      qsa_safe("input.igf-input", box).forEach(inp => {
+        const v = state?.[year]?.[inp.dataset.type];
+        inp.value = typeof v === "number" ? v : 0;
+      });
+    });
+    updateSubtotals();
+  }
+
+  function guardarIngreso() {
+    const tipo = document.getElementById("igf_tipo")?.value;
+    const anual = Number(document.getElementById("igf_monto_anual")?.value || 0);
+    const auto = document.getElementById("igf_auto_calc")?.checked;
+    const mensual = auto ? calcularMensual(tipo, anual) : 0;
+
+    const key = "fuas.ingresos." + tipo;
+    const registro = { anual, mensual, auto };
+
+    let lista = JSON.parse(localStorage.getItem(key) || "[]");
+    lista.push(registro);
+    localStorage.setItem(key, JSON.stringify(lista));
+
+    mostrarIngresos();
+  }
+
+  function calcularMensual(tipo, anual) {
+    switch (tipo) {
+      case "sueldos":
+        return anual / 12;
+      case "pensiones":
+        return anual / 12;
+      case "honorarios":
+        return (anual / 12) * 0.8; // descuento 20%
+      default:
+        return anual / 12;
+    }
+  }
+
+  function mostrarIngresos() {
+    let subtotal = 0;
+    const cont = document.getElementById("igf_lista");
+    if (!cont) return;
+
+    cont.innerHTML = "";
+    const keyPrefix = "fuas.ingresos.";
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith(keyPrefix)) {
+        const lista = JSON.parse(localStorage.getItem(key) || "[]");
+        lista.forEach((item) => {
+          subtotal += item.mensual || 0;
+          const li = document.createElement("li");
+          li.className = "list-group-item d-flex justify-content-between align-items-center";
+          li.textContent = `${key.replace(keyPrefix, "")} → $${item.mensual.toLocaleString("es-CL")}/mes`;
+          cont.appendChild(li);
+        });
+      }
+    }
+
+    const el = document.getElementById("igf_subtotal");
+    if (el) {
+      el.textContent = "$" + subtotal.toLocaleString("es-CL");
+    }
+  }
+
+  function actualizarSubtotalEnVivo() {
+    const tipo = document.getElementById("igf_tipo")?.value;
+    const anual = Number(document.getElementById("igf_monto_anual")?.value || 0);
+    const auto = document.getElementById("igf_auto_calc")?.checked;
+    const mensual = auto ? calcularMensual(tipo, anual) : 0;
+
+    let subtotal = 0;
+    const keyPrefix = "fuas.ingresos.";
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith(keyPrefix)) {
+        const lista = JSON.parse(localStorage.getItem(key) || "[]");
+        lista.forEach((item) => (subtotal += item.mensual || 0));
+      }
+    }
+    subtotal += mensual;
+
+    const el = document.getElementById("igf_subtotal");
+    if (el) {
+      el.textContent = "$" + subtotal.toLocaleString("es-CL");
+    }
+  }
+
+  function wireForm() {
+    const form = document.getElementById("igf_form");
+    if (!form) return;
+
+    const tipo = document.getElementById("igf_tipo");
+    const anual = document.getElementById("igf_monto_anual");
+    const auto = document.getElementById("igf_auto_calc");
+    const guardarBtn = document.getElementById("igf_guardar");
+
+    if (guardarBtn) guardarBtn.addEventListener("click", guardarIngreso);
+    if (tipo) tipo.addEventListener("change", actualizarSubtotalEnVivo);
+    if (anual) anual.addEventListener("input", actualizarSubtotalEnVivo);
+    if (auto) auto.addEventListener("change", actualizarSubtotalEnVivo);
+
+    updateSubtotals();
+  }
+
+  // Exponer inicializador global
+  window.initIngresosFamiliaresMatriz = function () {
+    wireForm();
+    hydrateToDOM(loadState(currentMemberId()));
+    updateSubtotals();
+  };
+
+  // Storage por miembro (si lo necesitas)
+  function storageKey(memberId) { return KEY_PREFIX + memberId; }
+  function loadState(memberId) {
+    try { return JSON.parse(localStorage.getItem(storageKey(memberId)) || "{}"); }
+    catch { return {}; }
+  }
+  function saveState(memberId, state) {
+    localStorage.setItem(storageKey(memberId), JSON.stringify(state));
+  }
+
+  // Auto-init si el bloque ya existe al cargar (por si no lo inyectas)
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById(ROOT_ID)) {
+      window.initIngresosFamiliaresMatriz();
+    }
+  });
+})();
+
+/*************************************************************
+ * 1) GUARDAR Y CONTINUAR DESDE DATOS PERSONALES
+ *************************************************************/
+function continuarDesdePersonales() {
+  const personales = {
+    rut: document.getElementById("rutPostulante")?.value?.trim() || "",
+    apePaterno: document.getElementById("ap-paternoPostulante")?.value?.trim() || "",
+    apeMaterno: document.getElementById("ap-maternoPostulante")?.value?.trim() || "",
+    nomPostulante: document.getElementById("nombresPostulante")?.value?.trim() || "",
+    civPostulante: document.getElementById("civPostulante")?.value || "",
+    nivPostulante: document.getElementById("nivPostulante")?.value || "",
+    actPostulante: document.getElementById("actPostulante")?.value || "",
+  };
+
+  localStorage.setItem("fuas.personales", JSON.stringify(personales));
+
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val || "-"; };
+  set("lblRut", personales.rut);
+  set("lblapePaterno", personales.apePaterno);
+  set("lblapeMaterno", personales.apeMaterno);
+  set("lblnomPostulante", personales.nomPostulante);
+  document.querySelectorAll(".lblNomCompleto").forEach(lbl => {
+    lbl.textContent = `${personales.nomPostulante} ${personales.apePaterno} ${personales.apeMaterno}`.trim();
+  });
+  set("lblciv-estPostulante", personales.civPostulante);
+  set("lblniv-estPostulante", personales.nivPostulante);
+  set("lblactPostulante", personales.actPostulante);
+
+  if (typeof ocultarTodo === "function") ocultarTodo();
+  if (document.getElementById("form-datosFamiliares")) {
+    document.getElementById("form-datosFamiliares").classList.remove("d-none");
   }
 }
+
+/*************************************************************
+ * 2) AGREGAR / ELIMINAR FAMILIAR (render acordeones)
+ *************************************************************/
+const FAM_LIST_KEY = "fuas.familia.list";
+let familiarCounter = Number(localStorage.getItem("fuas.familia.counter") || 0);
+
+function getFamiliaList() {
+  try { return JSON.parse(localStorage.getItem(FAM_LIST_KEY) || "[]"); }
+  catch { return []; }
+}
+function setFamiliaList(list) {
+  localStorage.setItem(FAM_LIST_KEY, JSON.stringify(list || []));
+}
+
+function eliminarFamiliar(btn) {
+  const item = btn?.closest(".accordion-item");
+  if (!item) return;
+  const famId = item.getAttribute("data-fam-id");
+  if (!famId) return;
+
+  if (!confirm("¿Eliminar este familiar y sus secciones asociadas?")) return;
+
+  const list = getFamiliaList().filter(f => f.id !== famId);
+  setFamiliaList(list);
+
+  document.querySelectorAll(`[data-fam-id="${famId}"]`).forEach(el => el.remove());
+
+  if (window.currentMemberId === famId) {
+    window.currentMemberId = "postulante";
+  }
+}
+
+/********** Helpers de render **********/
+function renderAcordeonDatosFamiliaresItem(famId, nombreVisible) {
+  const acc = document.getElementById("acordeon-container"); // <<<<<< ID corregido según tu HTML
+  if (!acc) return;
+
+  const idx = famId.replace("fam_", "");
+  const html = `
+    <div class="accordion-item" data-fam-id="${famId}">
+      <h2 class="accordion-header" id="head-df-${idx}">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#col-df-${idx}" aria-expanded="false" aria-controls="col-df-${idx}">
+          ${nombreVisible} — Datos del familiar
+        </button>
+      </h2>
+      <div id="col-df-${idx}" class="accordion-collapse collapse" aria-labelledby="head-df-${idx}" data-bs-parent="#acordeon-container">
+        <div class="accordion-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">RUT</label>
+              <input class="form-control" data-f="${famId}" data-field="rut" placeholder="12.345.678-9">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nombres</label>
+              <input class="form-control" data-f="${famId}" data-field="nombres" placeholder="Nombres">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Apellido paterno</label>
+              <input class="form-control" data-f="${famId}" data-field="apPaterno" placeholder="Apellido paterno">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Apellido materno</label>
+              <input class="form-control" data-f="${famId}" data-field="apMaterno" placeholder="Apellido materno">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Relación</label>
+              <select class="form-select" data-f="${famId}" data-field="relacion">
+                <option selected disabled>Selecciona…</option>
+                <option>Madre</option>
+                <option>Padre</option>
+                <option>Hermano/a</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nivel de estudio</label>
+              <select class="form-select" data-f="${famId}" data-field="nivelEstudio">
+                <option selected disabled>Selecciona…</option>
+                <option>Básica</option>
+                <option>Media</option>
+                <option>Superior</option>
+                <option>Técnico</option>
+              </select>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn btn-outline-danger btn-sm" onclick="eliminarFamiliar(this)">
+                Eliminar familiar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  acc.insertAdjacentHTML("beforeend", html);
+
+  const pane = document.getElementById(`col-df-${idx}`);
+  pane?.addEventListener("show.bs.collapse", () => { window.currentMemberId = famId; });
+}
+
+function renderAcordeonCondicionSaludItem(famId, nombreVisible) {
+  const acc = document.getElementById("acordeon-condicion-salud");
+  if (!acc) return;
+
+  const idx = famId.replace("fam_", "");
+  const html = `
+  <div class="accordion-item" data-fam-id="${famId}">
+    <h2 class="accordion-header" id="head-salud-${idx}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        data-bs-target="#col-salud-${idx}" aria-expanded="false" aria-controls="col-salud-${idx}">
+        ${nombreVisible} — Condición de salud
+      </button>
+    </h2>
+    <div id="col-salud-${idx}" class="accordion-collapse collapse" aria-labelledby="head-salud-${idx}" data-bs-parent="#acordeon-condicion-salud">
+      <div class="accordion-body">
+        <div class="row g-3">
+          <div class="col-md-12">
+            <label class="form-label">Antecedentes de salud</label>
+            <textarea class="form-control" rows="2" data-f="${famId}" data-field="saludNotas"
+              placeholder="Describe la condición de salud del familiar…"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">¿Se puede desplazar dentro del hogar?</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="desplaza_${idx}" value="si" data-f="${famId}" data-field="desplaza">
+              <label class="form-check-label">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="desplaza_${idx}" value="no" data-f="${famId}" data-field="desplaza">
+              <label class="form-check-label">No</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">¿Control de esfínteres?</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="esfinter_${idx}" value="si" data-f="${famId}" data-field="esfinteres">
+              <label class="form-check-label">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="esfinter_${idx}" value="no" data-f="${famId}" data-field="esfinteres">
+              <label class="form-check-label">No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  acc.insertAdjacentHTML("beforeend", html);
+
+  const pane = document.getElementById(`col-salud-${idx}`);
+  pane?.addEventListener("show.bs.collapse", () => { window.currentMemberId = famId; });
+}
+
+/*************************************************************
+ * 3) INIT “Datos familiares” (botón + reconstrucción)
+ *************************************************************/
+function initDatosFamiliares() {
+  const btnAdd = document.getElementById("btn-agregar-familiar");
+  if (btnAdd && !btnAdd._fuasHooked) {
+    btnAdd.addEventListener("click", agregarFamiliar);
+    btnAdd._fuasHooked = true;
+  }
+
+  const list = getFamiliaList();
+  list.forEach(item => {
+    renderAcordeonDatosFamiliaresItem(item.id, item.nombre);
+    renderAcordeonCondicionSaludItem(item.id, item.nombre);
+  });
+
+  if (!list.length) {
+    familiarCounter += 1;
+    localStorage.setItem("fuas.familia.counter", String(familiarCounter));
+    const id = `fam_${familiarCounter}`;
+    const nombre = `Familiar ${familiarCounter}`;
+    const list2 = getFamiliaList(); list2.push({id, nombre}); setFamiliaList(list2);
+    renderAcordeonDatosFamiliaresItem(id, nombre);
+    renderAcordeonCondicionSaludItem(id, nombre);
+    window.currentMemberId = id;
+  }
+}
+
+// Auto-init si el HTML ya está
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("acordeon-container")) {
+    initDatosFamiliares();
+  }
+});
+
+/* ==== Patch: Add ingresos accordion per familiar, usando plantilla existente ==== */
+(function(){
+  const ORIG_ADD = window.agregarFamiliar;
+  function findIngresosTemplate(){
+    const candidates = Array.from(document.querySelectorAll('#accordionFamiliar1 .accordion-item'));
+    for(const el of candidates){
+      if(el.querySelector('#ingresos-familiares-matriz')) return el;
+    }
+    return null;
+  }
+  function uniqueIngresosFor(idx){
+    const templateAcc = findIngresosTemplate();
+    if(!templateAcc){ return null; }
+    const clone = templateAcc.cloneNode(true);
+    const header = clone.querySelector('[id^="headingFamiliar"]');
+    if(header){ header.id = 'headingFamiliar'+idx; }
+    const btn = clone.querySelector('button.accordion-button');
+    if(btn){
+      btn.setAttribute('data-bs-target', '#collapseFamiliar'+idx);
+      btn.setAttribute('aria-controls','collapseFamiliar'+idx);
+    }
+    const collapse = clone.querySelector('[id^="collapseFamiliar"]');
+    if(collapse){
+      collapse.id = 'collapseFamiliar'+idx;
+      collapse.setAttribute('aria-labelledby','headingFamiliar'+idx);
+      collapse.classList.remove('show');
+    }
+    const matrix = clone.querySelector('#ingresos-familiares-matriz');
+    if(matrix){
+      matrix.id = 'ingresos-familiares-matriz-'+idx;
+      const s24 = clone.querySelector('#igf-subtotal-2024'); if(s24){ s24.id = 'igf-subtotal-2024-'+idx; s24.setAttribute('data-role','subtotal-2024'); }
+      const s25 = clone.querySelector('#igf-subtotal-2025'); if(s25){ s25.id = 'igf-subtotal-2025-'+idx; s25.setAttribute('data-role','subtotal-2025'); }
+      const sg  = clone.querySelector('#igf-subtotal-global'); if(sg){ sg.id  = 'igf-subtotal-global-'+idx; sg.setAttribute('data-role','subtotal-global'); }
+      clone.querySelectorAll('input.igf-input').forEach(inp=>{ inp.setAttribute('data-idx', String(idx)); inp.value = 0; });
+    }
+    const lbl = clone.querySelector('label.lblNomCompleto');
+    if(lbl){ lbl.textContent = 'Familiar '+idx; }
+    return clone;
+  }
+  function updateSubtotalsIn(root){
+    if(!root) return;
+    function sumForYear(y){
+      let s=0;
+      root.querySelectorAll('[data-year="'+y+'"] input.igf-input').forEach(inp=>{
+        const v = Number(String(inp.value||0).replace(/[^\d.-]/g,''))||0; s+=v;
+      });
+      return s;
+    }
+    const s24 = sumForYear('2024'), s25 = sumForYear('2025'), g = s24+s25;
+    const fmt = n => '$' + Number(n||0).toLocaleString('es-CL');
+    const el24 = root.querySelector('[data-role="subtotal-2024"]'); if(el24) el24.textContent = fmt(s24);
+    const el25 = root.querySelector('[data-role="subtotal-2025"]'); if(el25) el25.textContent = fmt(s25);
+    const elg  = root.querySelector('[data-role="subtotal-global"]'); if(elg)  elg.textContent  = fmt(g);
+  }
+  function wireIngresos(root){
+    if(!root) return;
+    root.querySelectorAll('input.igf-input').forEach(inp=>{
+      inp.addEventListener('input', ()=> updateSubtotalsIn(root));
+      inp.addEventListener('change', ()=> updateSubtotalsIn(root));
+    });
+    updateSubtotalsIn(root);
+  }
+  window.agregarFamiliar = function(){
+    try{ if(typeof ORIG_ADD === 'function') ORIG_ADD(); }catch(e){}
+    let idx = 1;
+    const last = localStorage.getItem('fuas.familia.counter');
+    if(last) idx = Number(last);
+    const dest = document.getElementById('acordeon-ingresos-familiares');
+    const clone = uniqueIngresosFor(idx);
+    if(dest && clone){
+      dest.appendChild(clone);
+      const root = clone.querySelector('.accordion-body') || clone;
+      wireIngresos(root);
+    }
+  };
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const first = findIngresosTemplate();
+    if(first){
+      const body = first.querySelector('.accordion-body') || first;
+      const s24 = body.querySelector('#igf-subtotal-2024'); if(s24) s24.setAttribute('data-role','subtotal-2024');
+      const s25 = body.querySelector('#igf-subtotal-2025'); if(s25) s25.setAttribute('data-role','subtotal-2025');
+      const sg  = body.querySelector('#igf-subtotal-global'); if(sg) sg.setAttribute('data-role','subtotal-global');
+      wireIngresos(body);
+    }
+  });
+})();
+
+/***** PARCHE: Agregar familiar robusto (numera bien y conserva estilos) *****/
+(function () {
+  const IDS = {
+    datos: "acordeon-container",
+    ingresos: "acordeon-ingresos-familiares",
+    salud: "acordeon-condicion-salud",
+  };
+
+  // Contador por DOM: calcula el próximo "Familiar N" mirando cuántos items hay en los 3 acordeones
+  function nextIndex() {
+    const c = id => (document.getElementById(id)?.querySelectorAll(".accordion-item").length || 0);
+    return Math.max(c(IDS.datos), c(IDS.ingresos), c(IDS.salud)) + 1;
+  }
+
+  // Toma como plantilla el PRIMER .accordion-item del contenedor
+  function getTemplate(containerId) {
+    const cont = document.getElementById(containerId);
+    if (!cont) return null;
+    return cont.querySelector(".accordion-item");
+  }
+
+  // Limpia campos del clon
+  function resetFields(root) {
+    root.querySelectorAll("input").forEach(inp => {
+      if (inp.type === "radio" || inp.type === "checkbox") inp.checked = false;
+      else inp.value = "";
+    });
+    root.querySelectorAll("textarea").forEach(t => t.value = "");
+    root.querySelectorAll("select").forEach(s => (s.selectedIndex = 0));
+  }
+
+  // Ajusta ids/targets del acordeón sin tocar clases (así no se rompe la estética)
+  function uniquifyAccordion(clone, prefix, idx, parentId) {
+    // header + button
+    const header = clone.querySelector("h2[id]") || clone.querySelector('[id^="heading"]');
+    if (header) header.id = `${prefix}-head-${idx}`;
+
+    const btn = clone.querySelector(".accordion-button");
+    if (btn) {
+      btn.setAttribute("data-bs-target", `#${prefix}-col-${idx}`);
+      btn.setAttribute("aria-controls", `${prefix}-col-${idx}`);
+      // no tocamos clases => se mantiene diseño
+    }
+
+    // collapse
+    const col = clone.querySelector(".accordion-collapse[id]");
+    if (col) {
+      col.id = `${prefix}-col-${idx}`;
+      if (header) col.setAttribute("aria-labelledby", header.id);
+      // asegurar parent correcto
+      if (parentId) col.setAttribute("data-bs-parent", `#${parentId}`);
+      col.classList.remove("show");
+    }
+
+    // marca del familiar
+    clone.setAttribute("data-fam-id", `fam_${idx}`);
+  }
+
+  // Cambia el texto del botón/heading manteniendo estilos
+  function setHeadingText(clone, baseText, idx) {
+    const btn = clone.querySelector(".accordion-button");
+    if (!btn) return;
+    // Si el template ya tiene un "Familiar X", lo reemplazamos; si no, agregamos el sufijo
+    const txt = btn.textContent.trim();
+    const replaced = txt.replace(/Familiar\s+\d+/i, `${baseText} ${idx}`);
+    btn.textContent = /Familiar\s+\d+/i.test(txt) ? replaced : `${baseText} ${idx}`;
+  }
+
+  // Subtotales locales para el clon de INGRESOS (no toca estilos)
+  function bindIngresosSubtotals(clone) {
+    const fmt = n => "$" + Number(n || 0).toLocaleString("es-CL");
+    const toNum = v => Number(String(v || 0).replace(/[^\d.-]/g, "")) || 0;
+
+    function sumYear(y) {
+      let s = 0;
+      clone.querySelectorAll(`[data-year="${y}"] input.igf-input, [data-year="${y}"] input[data-type]`)
+        .forEach(inp => (s += toNum(inp.value)));
+      return s;
+    }
+    const sub24 = clone.querySelector('[data-role="subtotal-2024"]') || clone.querySelector("#igf-subtotal-2024");
+    const sub25 = clone.querySelector('[data-role="subtotal-2025"]') || clone.querySelector("#igf-subtotal-2025");
+    const subG  = clone.querySelector('[data-role="subtotal-global"]') || clone.querySelector("#igf-subtotal-global");
+
+    function recalc() {
+      const s24 = sumYear("2024");
+      const s25 = sumYear("2025");
+      if (sub24) sub24.textContent = fmt(s24);
+      if (sub25) sub25.textContent = fmt(s25);
+      if (subG)  subG.textContent  = fmt(s24 + s25);
+    }
+
+    clone.querySelectorAll("input.igf-input, input[data-type]").forEach(inp => {
+      inp.addEventListener("input", recalc);
+      inp.addEventListener("change", recalc);
+    });
+    recalc();
+  }
+
+  // Clona el primer item del contenedor, lo limpia, actualiza ids/título y lo añade
+  function cloneInto(containerId, prefix, idx, titleBase) {
+    const cont = document.getElementById(containerId);
+    const tpl  = getTemplate(containerId);
+    if (!cont || !tpl) return null;
+
+    const clone = tpl.cloneNode(true);
+    resetFields(clone);
+    uniquifyAccordion(clone, prefix, idx, containerId);
+    if (titleBase) setHeadingText(clone, titleBase, idx);
+
+    cont.appendChild(clone);
+    return clone;
+  }
+
+  // —— REDEFINIR agregarFamiliar sin borrar tu versión ——
+  const originalAdd = window.agregarFamiliar;
+  window.agregarFamiliar = function () {
+    const idx = nextIndex();
+    const titulo = "Familiar";
+
+    // 1) Datos familiares
+    const datos = cloneInto(IDS.datos, "df", idx, `${titulo}`);
+
+    // 2) Ingresos familiares
+    const ingresos = cloneInto(IDS.ingresos, "ing", idx, `${titulo}`);
+    if (ingresos) bindIngresosSubtotals(ingresos);
+
+    // 3) Condición de salud
+    const salud = cloneInto(IDS.salud, "salud", idx, `Condición de Salud ${titulo}`);
+
+    // Seleccionar miembro activo para que tu módulo de ingresos lo use
+    window.currentMemberId = `fam_${idx}`;
+
+    // Abre el acordeón de Datos recién creado (si existe)
+    const col = datos?.querySelector(".accordion-collapse");
+    if (col && window.bootstrap?.Collapse) new bootstrap.Collapse(col, { toggle: true });
+
+    // Ejecutar lógica previa si tu función original hacía algo más
+    if (typeof originalAdd === "function") {
+      try { originalAdd(); } catch(e) {}
+    }
+  };
+
+  // Hook al botón (si aún no quedó)
+  function hookBtn() {
+    const btn = document.getElementById("btn-agregar-familiar");
+    if (btn && !btn._fuasHooked) {
+      btn.addEventListener("click", window.agregarFamiliar);
+      btn._fuasHooked = true;
+    }
+  }
+  document.addEventListener("DOMContentLoaded", hookBtn);
+  hookBtn();
+
+  // Asegura subtotales vivos en el PRIMER item de Ingresos que ya existe
+  document.addEventListener("DOMContentLoaded", () => {
+    const first = getTemplate(IDS.ingresos);
+    if (first) bindIngresosSubtotals(first);
+  });
+})();

@@ -54,89 +54,236 @@ style="text-align: justify;">
     </h2>
     <div id="collapseFamiliar1" class="accordion-collapse collapse" aria-labelledby="headingFamiliar1">
       <div class="accordion-body">
-        <h5><strong>Año 2024</strong></h5>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label for="sueldos2024" class="form-label">Sueldos</label>
-            <input type="number" class="form-control" id="sueldos2024" value="0"/>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensiones2024" class="form-label">Pensiones</label>
-            <input type="number" class="form-control" id="pensiones2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="honorarios2024" class="form-label">Honorarios</label>
-            <input type="number" class="form-control" id="honorarios2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="retiros2024" class="form-label">Retiros</label>
-            <input type="number" class="form-control" id="retiros2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="dividendos2024" class="form-label">Dividendos por acciones</label>
-            <input type="number" class="form-control" id="dividendos2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="intereses2024" class="form-label">Intereses mobiliarios</label>
-            <input type="number" class="form-control" id="intereses2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="ganancias2024" class="form-label">Ganancias de capital</label>
-            <input type="number" class="form-control" id="ganancias2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensionAlimenticia2024" class="form-label">Pensión alimenticia y otros aportes de parientes</label>
-            <input type="number" class="form-control" id="pensionAlimenticia2024" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="independiente2024" class="form-label">Actividades independientes</label>
-            <input type="number" class="form-control" id="independiente2024" value="0" />
-            </div>
-        </div>
-        <hr>
-        <h5><strong>Año 2025</strong></h5>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label for="sueldos2025" class="form-label">Sueldos</label>
-            <input type="number" class="form-control" id="sueldos2025" value="0"/>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensiones2025" class="form-label">Pensiones</label>
-            <input type="number" class="form-control" id="pensiones2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="honorarios2025" class="form-label">Honorarios</label>
-            <input type="number" class="form-control" id="honorarios2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="retiros2025" class="form-label">Retiros</label>
-            <input type="number" class="form-control" id="retiros2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="dividendos2025" class="form-label">Dividendos por acciones</label>
-            <input type="number" class="form-control" id="dividendos2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="intereses2025" class="form-label">Intereses mobiliarios</label>
-            <input type="number" class="form-control" id="intereses2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="ganancias2025" class="form-label">Ganancias de capital</label>
-            <input type="number" class="form-control" id="ganancias2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="pensionAlimenticia2025" class="form-label">Pensión alimenticia y otros aportes de parientes</label>
-            <input type="number" class="form-control" id="pensionAlimenticia2025" value="0" />
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="independiente2025" class="form-label">Actividades independientes</label>
-            <input type="number" class="form-control" id="independiente2025" value="0" />
-            </div>
-        </div>
+       <!--INICIO DE FORMULARIO / INGRESOS FAMILIARES-->
+       <section id="ingresos-familiares-matriz" class="container my-4">
+  <div class="d-flex align-items-center gap-2 mb-2">
+    <h2 class="h5 mb-0">Ingresos familiares</h2>
+    <span class="text-primary"
+      data-bs-toggle="tooltip"
+      data-bs-placement="right"
+      title="Ingresa montos MENSUALES por categoría. El subtotal se actualiza en tiempo real.">
+      ⓘ
+    </span>
+  </div>
+
+  <!-- Año 2024 -->
+  <h3 class="h6 mb-2">
+    Año 2024
+    <span class="text-primary"
+      data-bs-toggle="tooltip"
+      title="Completa los ingresos MENSUALES del año 2024 por categoría.">
+      ⓘ
+    </span>
+  </h3>
+
+  <div class="row g-3" data-year="2024">
+    <div class="col-md-6">
+      <label class="form-label">
+        Sueldos
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Promedio mensual bruto descontando salud y AFP obligatorias.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="sueldo">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">
+        Pensiones
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Jubilación, invalidez u orfandad. Promedio mensual, restando cotizaciones si corresponde.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="pension">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">
+        Honorarios
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Suma boletas del año/12 y considera 20% de cotizaciones (base 80%). Si ya tienes el mensual, ingrésalo directo.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="honorarios">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">
+        Retiros
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Retiros de utilidades desde tu empresa. Referencia: F22 Línea 1 código 104.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="retiros">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">
+        Dividendos por acciones
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Ganancias por acciones. Referencia: F22 Línea 2 código 105.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="dividendos">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">
+        Intereses mobiliarios
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Intereses por depósitos, fondos, etc. Referencia: F22 Línea 8 código 155.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="intereses">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">
+        Ganancias de capital
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Venta de acciones/bonos/propiedades. También F22 Línea 8 código 155.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="ganancias_cap">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">
+        Pensión alimenticia y otros aportes de parientes
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Pensión judicial/acordada y ayudas económicas familiares. Promedio mensual del total recibido.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="pension_alim">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">
+        Actividades independientes
+        <span class="text-primary" data-bs-toggle="tooltip"
+          title="Trabajos no formales: arriendos, ventas informales, jardinería, etc. Ingresa el promedio mensual.">
+          ⓘ
+        </span>
+      </label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="otras_indep">
+    </div>
+
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center border-top pt-2">
+        <span class="fw-semibold">Subtotal 2024 (mensual):</span>
+        <span id="igf-subtotal-2024" class="fw-bold">$0</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Año 2025 -->
+  <h3 class="h6 mb-2">
+    Año 2025
+    <span class="text-primary"
+      data-bs-toggle="tooltip"
+      title="Completa los ingresos MENSUALES del año 2025 por categoría.">
+      ⓘ
+    </span>
+  </h3>
+
+  <div class="row g-3" data-year="2025">
+    <div class="col-md-6">
+      <label class="form-label">Sueldos <span class="text-primary" data-bs-toggle="tooltip" title="Promedio mensual neto de cotizaciones obligatorias.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="sueldo">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Pensiones <span class="text-primary" data-bs-toggle="tooltip" title="Jubilación, invalidez u orfandad. Promedio mensual.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="pension">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Honorarios <span class="text-primary" data-bs-toggle="tooltip" title="(Anual × 0,8)/12 si calculas desde boletas. Si ya tienes el mensual, ingrésalo directo.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="honorarios">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Retiros <span class="text-primary" data-bs-toggle="tooltip" title="Retiros de utilidades (F22 L1 c104).">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="retiros">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Dividendos por acciones <span class="text-primary" data-bs-toggle="tooltip" title="F22 L2 c105.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="dividendos">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Intereses mobiliarios <span class="text-primary" data-bs-toggle="tooltip" title="F22 L8 c155.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="intereses">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Ganancias de capital <span class="text-primary" data-bs-toggle="tooltip" title="Venta de valores/bienes. F22 L8 c155.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="ganancias_cap">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Pensión alimenticia y otros aportes de parientes <span class="text-primary" data-bs-toggle="tooltip" title="Promedio mensual del total recibido.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="pension_alim">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Actividades independientes <span class="text-primary" data-bs-toggle="tooltip" title="Trabajos no formales. Ingresa promedio mensual.">ⓘ</span></label>
+      <input type="number" class="form-control igf-input" value="0" min="0" data-type="otras_indep">
+    </div>
+
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center border-top pt-2">
+        <span class="fw-semibold">Subtotal 2025 (mensual):</span>
+        <span id="igf-subtotal-2025" class="fw-bold">$0</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="d-flex gap-2 mt-3">
+    <button id="igf-guardar-matriz" class="btn btn-primary">Guardar</button>
+    <button id="igf-limpiar-matriz" class="btn btn-outline-secondary">Limpiar</button>
+  </div>
+</section>
+<!--FIN FORMULARIO INGRESOS FAMILIARES-->
+    </div>
+  </div>
+</section>
+
+<!-- Modal: Guía completa -->
+<div class="modal fade" id="guiaIngresosModal" tabindex="-1" aria-labelledby="guiaIngresosModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="guiaIngresosModalLabel" class="modal-title">Guía de ingresos a declarar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body small">
+        <p><strong>Sueldos:</strong> Lo que ganas con contrato. Promedio mensual bruto, descontando salud y AFP obligatorios.</p>
+        <p><strong>Pensiones:</strong> Jubilación, invalidez u orfandad. Promedio mensual, restando cotizaciones si corresponde.</p>
+        <p><strong>Honorarios (independiente):</strong> Suma boletas del año, divide por 12 y descuenta 20% por cotizaciones.</p>
+        <p><strong>Retiros de empresa:</strong> Si retiraste utilidades, es ingreso. F22, Línea 1, código 104.</p>
+        <p><strong>Dividendos por acciones:</strong> Ganancias por acciones. F22, Línea 2, código 105.</p>
+        <p><strong>Intereses de capitales mobiliarios:</strong> Depósitos, fondos, etc. F22, Línea 8, código 155.</p>
+        <p><strong>Ganancias de capitales mobiliarios:</strong> Venta de acciones/bonos/propiedades. También F22, L8 c155.</p>
+        <p><strong>Pensión alimenticia y aportes de parientes:</strong> Pensión judicial/acordada y ayudas. Promedio mensual del total recibido.</p>
+        <p><strong>Actividades independientes (otras):</strong> Arriendos, trabajos sin contrato, ventas informales, jardinería, etc. Promedio mensual del total anual.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>
-<div class="accordion mt-1" id="acordeon-ingresos-familiares">
+
+    </div>
+  </div>
+  <div class="accordion mt-1" id="acordeon-ingresos-familiares">
+</div>
   <!-- Aquí se agregarán los acordeones de ingresos -->
 </div>
 
