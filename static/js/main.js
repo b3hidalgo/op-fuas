@@ -18,9 +18,7 @@ function inicializarDatosPersonales() {
   });
 }
 
-// ... (todo tu JS de UI, acordiones y helpers existente) ...
-
-let contadorFamiliares = 1;
+// ... (todo tu JS de UI, acordeones y helpers existente) ...
 
 function agregarFamiliar() {
   const acordeonSalud = document.createElement("div");
@@ -356,19 +354,6 @@ function initTooltipsDelegados() {
     localStorage.setItem(key, JSON.stringify(lista));
 
     mostrarIngresos();
-  }
-
-  function calcularMensual(tipo, anual) {
-    switch (tipo) {
-      case "sueldos":
-        return anual / 12;
-      case "pensiones":
-        return anual / 12;
-      case "honorarios":
-        return (anual / 12) * 0.8; // descuento 20%
-      default:
-        return anual / 12;
-    }
   }
 
   function mostrarIngresos() {
