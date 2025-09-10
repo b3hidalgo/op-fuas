@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simulador FUAS</title>
+    <title>Operación FUAS</title>
 
     <!-- Bootstrap CSS -->
     <link 
@@ -20,9 +20,9 @@
   <body>
     <div id="header-container"></div>
     <div id="form-datosPersonales"></div>
-    <div id="form-datosFamiliares"></div>
-    <div id="form-ingresosFamiliares"></div>
-    <div id="form-condicionSalud"></div>
+    <div id="form-datosFamiliares" class="d-none"></div>
+    <div id="form-ingresosFamiliares" class="d-none"></div>
+    <div id="form-condicionSalud" class="d-none"></div>
 
     <!-- Bootstrap JS BUNDLE (incluye Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -31,6 +31,6 @@
     <script src="/static/js/calcularMensual.js"></script>
 
     <!--JS principal (después del bundle) -->
-    <script src="/static/js/main.js"></script>
+    <script src="/static/js/main.js" defer></script>
   </body>
 </html>

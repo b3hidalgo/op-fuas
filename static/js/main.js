@@ -21,12 +21,14 @@ function inicializarDatosPersonales() {
 // ... (todo tu JS de UI, acordeones y helpers existente) ...
 
 function agregarFamiliar() {
+  familiarCounter ++
+  console.log("Creando acordeón de salud")
   const acordeonSalud = document.createElement("div");
   acordeonSalud.className = "accordion-item";
   acordeonSalud.innerHTML = `
     <h2 class="accordion-header" id="headingCondSalud${familiarCounter}">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCondSalud${familiarCounter}" aria-expanded="false" aria-controls="collapseCondSalud${familiarCounter}">
-        Condición de Salud Familiar ${familiarCounter}
+        Familiar ${familiarCounter}
       </button>
     </h2>
     <div id="collapseCondSalud${familiarCounter}" class="accordion-collapse collapse" aria-labelledby="headingCondSalud${familiarCounter}" data-bs-parent="#acordeon-condicion-salud">
@@ -209,9 +211,6 @@ function cargarSeccion() {
 }
 
 
-
-// (… aquí va todo tu código existente para secciones de familiares y salud …)
-
 function mostrardatosPersonales() {
   document.getElementById("form-datosPersonales").classList.remove("d-none");
 }
@@ -234,19 +233,23 @@ function ocultarTodo() {
 
 function navdatosPersonales() {
   ocultarTodo();
-  mostrardatosFamiliares();
+  mostrardatosPersonales();
 }
 function navdatosFamiliares() {
   ocultarTodo();
-  mostraringresosFamiliares();
+  mostrardatosFamiliares();
 }
 function navingresosFamiliares() {
   ocultarTodo();
-  mostrarcondicionSalud();
+  mostraringresosFamiliares();
 }
 function navcondicionSalud() {
   ocultarTodo();
-  mostrardatosPersonales();
+  mostrarcondicionSalud();
+}
+
+function ocultarCondicionHeader(){
+  document.getElementById('condicionSaludhead').classList.add("d-none");
 }
 
 // --------------------------
@@ -486,7 +489,7 @@ function continuarDesdePersonales() {
  * 2) AGREGAR / ELIMINAR FAMILIAR (render acordeones)
  *************************************************************/
 const FAM_LIST_KEY = "fuas.familia.list";
-let familiarCounter = Number(localStorage.getItem("fuas.familia.counter") || 0);
+let familiarCounter = Number(localStorage.getItem("fuas.familia.counter") || 1);
 
 function getFamiliaList() {
   try { return JSON.parse(localStorage.getItem(FAM_LIST_KEY) || "[]"); }
@@ -870,49 +873,207 @@ document.addEventListener("DOMContentLoaded", () => {
     return clone;
   }
 
-  // —— REDEFINIR agregarFamiliar sin borrar tu versión ——
-  const originalAdd = window.agregarFamiliar;
-  window.agregarFamiliar = function () {
-    const idx = nextIndex();
-    const titulo = "Familiar";
-
-    // 1) Datos familiares
-    const datos = cloneInto(IDS.datos, "df", idx, `${titulo}`);
-
-    // 2) Ingresos familiares
-    const ingresos = cloneInto(IDS.ingresos, "ing", idx, `${titulo}`);
-    if (ingresos) bindIngresosSubtotals(ingresos);
-
-    // 3) Condición de salud
-    const salud = cloneInto(IDS.salud, "salud", idx, `Condición de Salud ${titulo}`);
-
-    // Seleccionar miembro activo para que tu módulo de ingresos lo use
-    window.currentMemberId = `fam_${idx}`;
-
-    // Abre el acordeón de Datos recién creado (si existe)
-    const col = datos?.querySelector(".accordion-collapse");
-    if (col && window.bootstrap?.Collapse) new bootstrap.Collapse(col, { toggle: true });
-
-    // Ejecutar lógica previa si tu función original hacía algo más
-    if (typeof originalAdd === "function") {
-      try { originalAdd(); } catch(e) {}
-    }
-  };
-
-  // Hook al botón (si aún no quedó)
-  function hookBtn() {
-    const btn = document.getElementById("btn-agregar-familiar");
-    if (btn && !btn._fuasHooked) {
-      btn.addEventListener("click", window.agregarFamiliar);
-      btn._fuasHooked = true;
-    }
-  }
-  document.addEventListener("DOMContentLoaded", hookBtn);
-  hookBtn();
-
+  
   // Asegura subtotales vivos en el PRIMER item de Ingresos que ya existe
   document.addEventListener("DOMContentLoaded", () => {
     const first = getTemplate(IDS.ingresos);
     if (first) bindIngresosSubtotals(first);
   });
 })();
+
+
+// DATOS PERSONALES | REGIONES Y COMUNAS 
+// ===== 0) Esperar DOM listo =====
+document.addEventListener('DOMContentLoaded', () => {
+  // ===== 1) DATASET (puedes pegar el completo aquí) =====
+  const REGIONES_COMUNAS = {
+    "Región de Arica y Parinacota": ["Arica","Camarones","Putre","General Lagos"],
+    "Región de Tarapacá": ["Iquique","Alto Hospicio","Pozo Almonte","Camiña","Colchane","Huara","Pica"],
+    "Región de Antofagasta": ["Antofagasta","Mejillones","Sierra Gorda","Taltal","Calama","Ollagüe","San Pedro de Atacama","Tocopilla","María Elena"],
+    "Región de Atacama": ["Copiapó","Caldera","Tierra Amarilla","Chañaral","Diego de Almagro","Vallenar","Alto del Carmen","Freirina","Huasco"],
+    "Región de Coquimbo": ["La Serena","Coquimbo","Andacollo","La Higuera","Paiguano","Vicuña","Illapel","Canela","Los Vilos","Salamanca","Ovalle","Combarbalá","Monte Patria","Punitaqui","Río Hurtado"],
+    "Región de Valparaíso": ["Valparaíso","Viña del Mar","Concón","Quilpué","Villa Alemana","Limache","Olmué","Quintero","Puchuncaví","Casablanca","Juan Fernández","San Antonio","Cartagena","El Tabo","El Quisco","Algarrobo","Santo Domingo","San Felipe","Llaillay","Catemu","Panquehue","Putaendo","Santa María","Los Andes","Calle Larga","Rinconada","San Esteban","La Ligua","Papudo","Cabildo","Zapallar","Petorca","Quillota","La Calera","Nogales","Hijuelas","La Cruz","Isla de Pascua"],
+    "Región Metropolitana de Santiago": ["Santiago","Cerrillos","Cerro Navia","Conchalí","El Bosque","Estación Central","Huechuraba","Independencia","La Cisterna","La Florida","La Granja","La Pintana","La Reina","Las Condes","Lo Barnechea","Lo Espejo","Lo Prado","Macul","Maipú","Ñuñoa","Pedro Aguirre Cerda","Peñalolén","Providencia","Pudahuel","Quilicura","Quinta Normal","Recoleta","Renca","San Joaquín","San Miguel","San Ramón","Vitacura","Puente Alto","San José de Maipo","Pirque","Colina","Lampa","Tiltil","Buin","Paine","San Bernardo","Calera de Tango","Melipilla","Alhué","Curacaví","María Pinto","San Pedro","Talagante","El Monte","Isla de Maipo","Padre Hurtado","Peñaflor"],
+    "Región del Libertador General Bernardo O'Higgins": ["Rancagua","Codegua","Coinco","Coltauco","Doñihue","Graneros","Las Cabras","Machalí","Malloa","Mostazal","Olivar","Peumo","Pichidegua","Quinta de Tilcoco","Rengo","Requínoa","San Vicente","Pichilemu","La Estrella","Litueche","Marchihue","Navidad","Paredones","San Fernando","Chépica","Chimbarongo","Lolol","Nancagua","Palmilla","Peralillo","Placilla","Pumanque","Santa Cruz"],
+    "Región del Maule": ["Talca","Constitución","Curepto","Empedrado","Maule","Pelarco","Pencahue","Río Claro","San Clemente","San Rafael","Cauquenes","Chanco","Pelluhue","Curicó","Hualañé","Licantén","Molina","Rauco","Romeral","Sagrada Familia","Teno","Vichuquén","Linares","Colbún","Longaví","Parral","Retiro","San Javier","Villa Alegre","Yerbas Buenas"],
+    "Región de Ñuble": ["Chillán","Chillán Viejo","Quillón","Bulnes","San Ignacio","El Carmen","Pemuco","Yungay","Pinto","Coihueco","San Carlos","Ñiquén","San Fabián","San Nicolás","Cobquecura","Quirihue","Ninhue","Treguaco","Portezuelo","Ránquil","Coelemu"],
+    "Región del Biobío": ["Concepción","Coronel","Chiguayante","Florida","Hualqui","Lota","Penco","San Pedro de la Paz","Santa Juana","Talcahuano","Tomé","Hualpén","Lebu","Arauco","Cañete","Contulmo","Curanilahue","Los Álamos","Tirúa","Los Ángeles","Antuco","Cabrero","Laja","Mulchén","Nacimiento","Negrete","Quilaco","Quilleco","San Rosendo","Santa Bárbara","Tucapel","Yumbel","Alto Biobío"],
+    "Región de La Araucanía": ["Temuco","Carahue","Cunco","Curarrehue","Freire","Galvarino","Gorbea","Lautaro","Loncoche","Melipeuco","Nueva Imperial","Padre Las Casas","Perquenco","Pitrufquén","Pucón","Saavedra","Teodoro Schmidt","Toltén","Vilcún","Villarrica","Cholchol","Angol","Collipulli","Curacautín","Ercilla","Lonquimay","Los Sauces","Lumaco","Purén","Renaico","Traiguén","Victoria"],
+    "Región de Los Ríos": ["Valdivia","Corral","Lanco","Los Lagos","Máfil","Mariquina","Paillaco","Panguipulli","La Unión","Futrono","Lago Ranco","Río Bueno"],
+    "Región de Los Lagos": ["Puerto Montt","Calbuco","Cochamó","Fresia","Frutillar","Los Muermos","Llanquihue","Maullín","Puerto Varas","Castro","Ancud","Chonchi","Curaco de Vélez","Dalcahue","Puqueldón","Queilén","Quellón","Quemchi","Quinchao","Osorno","Puerto Octay","Purranque","Puyehue","Río Negro","San Juan de la Costa","San Pablo","Chaitén","Futaleufú","Hualaihué","Palena"],
+    "Región de Aysén del General Carlos Ibáñez del Campo": ["Coyhaique","Lago Verde","Aysén","Cisnes","Guaitecas","Cochrane","O'Higgins","Tortel","Chile Chico","Río Ibáñez"],
+    "Región de Magallanes y de la Antártica Chilena": ["Punta Arenas","Laguna Blanca","Río Verde","San Gregorio","Cabo de Hornos","Antártica","Porvenir","Primavera","Timaukel","Natales","Torres del Paine"]
+  };
+
+  // ===== 2) Función idempotente de inicialización =====
+  function initRegionComuna() {
+    const regionSelect = document.getElementById('region');
+    const comunaSelect = document.getElementById('comuna');
+
+    // Si aún no existen, salir
+    if (!regionSelect || !comunaSelect) return false;
+
+    // Evitar doble-inicialización (si ya la hicimos, no repetir)
+    if (regionSelect.dataset.inited === '1') return true;
+    regionSelect.dataset.inited = '1';
+
+    // Poblar regiones
+    regionSelect.innerHTML = '<option selected disabled>[Selecciona...]</option>';
+    Object.keys(REGIONES_COMUNAS).forEach(region => {
+      const opt = document.createElement('option');
+      opt.value = region;
+      opt.textContent = region;
+      regionSelect.appendChild(opt);
+    });
+
+    // Listener único para cambiar comunas
+    regionSelect.addEventListener('change', () => {
+      const region = regionSelect.value;
+      comunaSelect.innerHTML = '<option selected disabled>[Selecciona...]</option>';
+
+      if (!region) {
+        comunaSelect.disabled = true;
+        return;
+      }
+
+      REGIONES_COMUNAS[region].forEach(comuna => {
+        const opt = document.createElement('option');
+        opt.value = comuna;
+        opt.textContent = comuna;
+        comunaSelect.appendChild(opt);
+      });
+
+      comunaSelect.disabled = false;
+    }, { once: false });
+
+    // Si quieres restaurar desde localStorage, acá podrías hacerlo
+
+    return true;
+  }
+
+  // ===== 3) Intento inmediato (si está en el DOM al cargar) =====
+  if (!initRegionComuna()) {
+    // ===== 4) Observador: se inicializa cuando el fragmento se inserte =====
+    const observer = new MutationObserver(() => {
+      if (initRegionComuna()) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+});
+
+
+// DATOS PERSONALES | VALIDACIÓN DE RUT
+
+document.addEventListener('DOMContentLoaded', () => {
+  // --- helpers RUT ---
+  const cleanRut = (s) => (s || '').replace(/[^0-9kK]/g, '').toUpperCase();
+
+  const formatRut = (s) => {
+    const c = cleanRut(s);
+    if (!c) return '';
+    if (c.length <= 1) return c; // aún escribiendo DV
+    const body = c.slice(0, -1);
+    const dv = c.slice(-1);
+    const rev = body.split('').reverse().join('');
+    const chunks = rev.match(/.{1,3}/g) || [];
+    const withDots = chunks.join('.').split('').reverse().join('');
+    return `${withDots}-${dv}`;
+  };
+
+  const computeDV = (bodyStr) => {
+    let sum = 0, mul = 2;
+    for (let i = bodyStr.length - 1; i >= 0; i--) {
+      sum += parseInt(bodyStr[i], 10) * mul;
+      mul = (mul === 7) ? 2 : (mul + 1);
+    }
+    const rest = 11 - (sum % 11);
+    return rest === 11 ? '0' : rest === 10 ? 'K' : String(rest);
+  };
+
+  const isValidRut = (s) => {
+    const c = cleanRut(s);
+    if (c.length < 2) return false;
+    const body = c.slice(0, -1);
+    const dv = c.slice(-1);
+    if (!/^\d+$/.test(body)) return false;
+    return computeDV(body) === dv;
+  };
+
+  const normalizeRut = (s) => {
+    const c = cleanRut(s);
+    return c.length >= 2 ? `${c.slice(0, -1)}-${c.slice(-1)}` : c;
+  };
+
+  // --- inicialización idempotente de un input RUT ---
+  function initRutInput(input) {
+    if (!input || input.dataset.rutInited === '1') return;
+
+    const feedback = document.getElementById(input.getAttribute('aria-describedby')) 
+                      || document.getElementById('rutFeedback');
+
+    const updateRut = () => {
+      const raw = input.value;
+      const formatted = formatRut(raw);
+
+      // mantener el caret al final si escribe al final
+      const atEnd = input.selectionStart === input.value.length;
+      input.value = formatted;
+      if (atEnd) input.selectionStart = input.selectionEnd = input.value.length;
+
+      const valid = isValidRut(raw);
+      input.classList.toggle('is-valid', valid);
+      const hasEnough = cleanRut(raw).length >= 2;
+      input.classList.toggle('is-invalid', hasEnough && !valid);
+      if (feedback) {
+        feedback.textContent = valid ? '' : 'RUT inválido. Revisa los dígitos y el verificador.';
+      }
+      // si quieres guardar: const rutParaGuardar = normalizeRut(raw);
+    };
+
+    // listeners
+    input.addEventListener('input', updateRut);
+    input.addEventListener('blur', updateRut);
+    // limpieza al pegar
+    input.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text');
+      input.value = cleanRut(text);
+      updateRut();
+    });
+
+    input.dataset.rutInited = '1';
+  }
+
+  // --- inicializar los que existan ahora (soporta muchos) ---
+  function initAllRutInputs() {
+    // por id clásico…
+    const byId = document.getElementById('rutPostulante');
+    if (byId) initRutInput(byId);
+    // …y por atributo data-rut (permite múltiples)
+    document.querySelectorAll('input[data-rut]').forEach(initRutInput);
+  }
+
+  initAllRutInputs();
+
+  // --- observar el DOM por contenido cargado dinámicamente ---
+  const observer = new MutationObserver(() => initAllRutInputs());
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+
+// DATOS PERSONALES | Condicion de Salud (SI/NO)
+
+document.addEventListener('DOMContentLoaded', () => {
+  const rSi = document.getElementById('saludSi');
+  const rNo = document.getElementById('saludNo');
+
+  if (rSi && rNo) {
+    // Al cambiar, guardamos y sincronizamos interfaz
+    rSi.addEventListener('change', () => setShowCondSalud(true));
+    rNo.addEventListener('change', () => setShowCondSalud(false));
+
+    // Inicializa radios según lo guardado (por si vuelven a la página)
+    const saved = getShowCondSalud();
+    if (saved) rSi.checked = true; else rNo.checked = true;
+    syncCondSaludUI();
+  }
+});

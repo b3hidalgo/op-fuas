@@ -9,8 +9,21 @@
       <h5 >Datos personales</h5>
       <div class="row g-3">
         <div class="col-md-3">
-          <label class="form-label">RUT</label>
-          <input type="text" class="form-control" id="rutPostulante" placeholder="Ej: 12.345.678-9">
+          <label for="rut" class="form-label">RUT</label>
+            <input
+              type="text"
+              id="rutPostulante"
+              name="rut"
+              class="form-control"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="Ej: 12.345.678-9"
+              
+            />
+            <div id="rutFeedback" class="invalid-feedback">
+              RUT inválido. Revisa los dígitos y el verificador.
+            </div>
+            <div class="form-text">Escribe sin puntos ni guión; se formatea solo.</div>
         </div>
       </div>
       <div class="row g-3">
@@ -352,15 +365,31 @@
         <label class="form-label">Nivel de estudio</label>
         <select class="form-select" id="niv-estPostulante">
           <option value="No informa" selected disabled>[Selecciona...]</option>
-          <option value="Media Completa">Media Completa</option>
-          <option value="Media incompleta">Media incompleta</option>
-          <!-- Agrega más niveles según el original -->
+          <option value="sin_estudios">Sin estudios</option>
+          <option value="basica_incompleta">Básica incompleta</option>
+          <option value="basica_completa">Básica completa</option>
+          <option value="media_incompleta">Media incompleta</option>
+          <option value="media_completa">Media completa</option>
+          <option value="tecnica_incompleta">Técnica incompleta</option>
+          <option value="tecnica_completa">Técnica completa</option>
+          <option value="universitaria_incompleta">Universitaria incompleta</option>
+          <option value="universitaria_completa">Universitaria completa</option>
+          <option value="postgrado">Postgrado</option>
         </select>
       </div>
       <div class="col-md-6">
         <label class="form-label">Actividad</label>
         <select class="form-select" id="actPostulante">
           <option value="No informa" selected disabled>[Selecciona...]</option>
+            <option value="">Seleccione una opción</option>
+            <option value="estudia">Estudia</option>
+            <option value="trabaja">Trabaja</option>
+            <option value="trabaja_y_estudia">Trabaja y estudia</option>
+            <option value="dueno_casa">Dueña(o) de casa</option>
+            <option value="cesante">Cesante</option>
+            <option value="jubilado_pensionado">Jubilado(a) o pensionado(a)</option>
+            <option value="discapacidad_permanente">Persona con discapacidad permanente que le impide trabajar</option>
+            <option value="otra_situacion">Otra situación</option>
           <!-- Agrega opciones según el FUAS -->
         </select>
       </div>
@@ -369,7 +398,8 @@
     <!-- CONDICIÓN DE SALUD -->
     <div class="mb-4">
       <label class="form-label fw-bold">
-        ¿Existen en tu hogar (incluyéndote) personas que tengan alguna de las siguientes condiciones de salud de larga duración: ceguera o dificultad visual; sordera o dificultad auditiva; mudez o dificultad en el habla; dificultad física; problemas mentales o psiquiátricos?
+        ¿Existen en tu hogar (incluyéndote) personas que tengan alguna de las siguientes condiciones de salud de larga duración: 
+        ceguera o dificultad visual; sordera o dificultad auditiva; mudez o dificultad en el habla; dificultad física; problemas mentales o psiquiátricos?
       </label>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="cond_salud" id="saludSi" value="si">
@@ -416,18 +446,21 @@
           <label class="form-label">Población o villa</label>
           <input type="text" class="form-control" id="pobPostulante" value="" >
       </div>
+
       <div class="col-md-4">
-          <label class="form-label">Región</label>
-          <select class="form-select" id="regPostulante">
-            <option selected disabled>[Selecciona...]</option>
-          </select>
-       </div>
-       <div class="col-md-4">
-          <label class="form-label">Comuna</label>
-          <select class="form-select" id="comPostulante">
-            <option selected disabled>[Selecciona...]</option>
-          </select>
-       </div>
+        <label for="region" class="form-label">Región</label>
+        <select class="form-select" id="region" name="region">
+          <option selected disabled>[Selecciona...]</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="comuna" class="form-label">Comuna</label>
+      <select class="form-select" id="comuna" name="comuna" disabled>
+        <option selected disabled>[Selecciona...]</option>
+      </select>
+    </div>
+
   </div>
 </section>
 
@@ -438,6 +471,10 @@
       <label class="form-label">Tipo de establecimiento</label>
       <select name="" id="" class="form-select" id="establecimientoPostulante">
         <option selected disabled>[Selecciona...]</option>
+        <option value="municipal">Municipal / Pública</option>
+        <option value="subvencionado">Particular Subvencionado</option>
+        <option value="pagado">Particular Pagado</option>
+        <option value="adm_delegada">Administración Delegada</option>
       </select>
     </div>
     <div class="col-md-6">
@@ -456,9 +493,78 @@
     <label for="institucion" class="form-label fw-bold">Institución educacional</label>
     <select id="institucion" class="form-select" id="instPostulante">
       <option selected>Selecciona...</option>
-      <option value="1">Duoc UC</option>
-      <option value="2">U. de Chile</option>
-      <option value="3">U. Católica</option>
+      <optgroup label="Universidades">
+          <option value="u_chile">Universidad de Chile</option>
+          <option value="puc_chile">Pontificia Universidad Católica de Chile</option>
+          <option value="usach">Universidad de Santiago de Chile</option>
+          <option value="u_concepcion">Universidad de Concepción</option>
+          <option value="utfsm">Universidad Técnica Federico Santa María</option>
+          <option value="u_valpo">Universidad de Valparaíso</option>
+          <option value="u_austral">Universidad Austral de Chile</option>
+          <option value="u_tarapaca">Universidad de Tarapacá</option>
+          <option value="u_antofagasta">Universidad de Antofagasta</option>
+          <option value="u_atacama">Universidad de Atacama</option>
+          <option value="u_serena">Universidad de La Serena</option>
+          <option value="u_talca">Universidad de Talca</option>
+          <option value="u_maule">Universidad Católica del Maule</option>
+          <option value="u_biobio">Universidad del Bío-Bío</option>
+          <option value="u_ubiobio">Universidad Católica de la Santísima Concepción</option>
+          <option value="u_frontera">Universidad de La Frontera</option>
+          <option value="u_loslagos">Universidad de Los Lagos</option>
+          <option value="u_magallanes">Universidad de Magallanes</option>
+          <option value="u_metro">Universidad Metropolitana de Ciencias de la Educación</option>
+          <option value="u_playa_ancha">Universidad de Playa Ancha</option>
+          <option value="u_artes_ciencias">Universidad de Artes y Ciencias Sociales ARCIS (cerrada, revisar)</option>
+          <option value="u_adolfo_ibanez">Universidad Adolfo Ibáñez</option>
+          <option value="u_andes">Universidad de los Andes</option>
+          <option value="udp">Universidad Diego Portales</option>
+          <option value="u_finis">Universidad Finis Terrae</option>
+          <option value="u_san_sebastian">Universidad San Sebastián</option>
+          <option value="u_desarrollo">Universidad del Desarrollo</option>
+          <option value="u_gabriela_mistral">Universidad Gabriela Mistral</option>
+          <option value="u_silva_henriquez">Universidad Católica Silva Henríquez</option>
+          <option value="u_alfonso_henriquez">Universidad Miguel de Cervantes</option>
+          <option value="u_pedro_valdivia">Universidad Pedro de Valdivia</option>
+          <option value="u_america">Universidad de Las Américas</option>
+          <option value="u_iboamericana">Universidad Iberoamericana</option>
+          <option value="u_autonoma">Universidad Autónoma de Chile</option>
+          <option value="u_central">Universidad Central de Chile</option>
+          <option value="u_mayor">Universidad Mayor</option>
+          <option value="u_santo_tomas">Universidad Santo Tomás</option>
+          <option value="u_tecnologica_metropolitana">Universidad Tecnológica Metropolitana</option>
+          <option value="u_tecnologica_inacap">Universidad Tecnológica de Chile INACAP</option>
+          <!-- … puedes agregar las demás privadas reconocidas -->
+        </optgroup>
+
+        <!-- =================== -->
+        <!-- INSTITUTOS PROFESIONALES -->
+        <!-- =================== -->
+        <optgroup label="Institutos Profesionales">
+          <option value="duoc_uc">Duoc UC</option>
+          <option value="inacap">Inacap</option>
+          <option value="ip_santo_tomas">Instituto Profesional Santo Tomás</option>
+          <option value="aiep">AIEP</option>
+          <option value="ip_los_leones">Instituto Profesional Los Leones</option>
+          <option value="ip_ciisa">Instituto CIISA</option>
+          <option value="ip_esipa">Instituto Guillermo Subercaseaux</option>
+          <option value="ip_ipla">Instituto Profesional La Araucana</option>
+          <!-- … resto de IP acreditados -->
+        </optgroup>
+
+        <!-- =================== -->
+        <!-- CENTROS DE FORMACIÓN TÉCNICA -->
+        <!-- =================== -->
+        <optgroup label="Centros de Formación Técnica">
+          <option value="cft_enac">CFT ENAC</option>
+          <option value="cft_santo_tomas">CFT Santo Tomás</option>
+          <option value="cft_ucn">CFT CEDUC-UCN</option>
+          <option value="cft_icel">CFT ICEL</option>
+          <option value="cft_estatal_rm">CFT Estatal Región Metropolitana</option>
+          <option value="cft_estatal_tarapaca">CFT Estatal Tarapacá</option>
+          <option value="cft_estatal_valpo">CFT Estatal Valparaíso</option>
+          <option value="cft_estatal_loslagos">CFT Estatal Los Lagos</option>
+          <!-- … los demás CFT públicos y privados -->
+        </optgroup>
     </select>
   </div>
 
@@ -503,3 +609,4 @@
 </section>
 
 
+<script src="main.js"></script>
